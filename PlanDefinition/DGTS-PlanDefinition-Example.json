@@ -1,7 +1,7 @@
 {
  "resourceType": "PlanDefinition",
  "id": "DGTS-PlanDefinition-Example",
- "url": "http://fhir.nhs.uk/PlanDefinition/TP231",
+ "url": "https://fhir.nhs.uk/PlanDefinition/TP231",
  "identifier": [
   {
    "system": "https://fhir.nhs.uk/Id/England-DigitalGenomicTestServices",
@@ -94,28 +94,28 @@
  ],
  "action": [
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT1"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT1"
   },
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT36"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT36"
   },
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT103"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT103"
   },
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT417"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT417"
   },
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT732"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT732"
   },
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT858"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT858"
   },
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT897"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT897"
   },
   {
-   "definitionCanonical": "http://fhir.nhs.uk/ActivityDefinition/GT1124"
+   "definitionCanonical": "https://fhir.nhs.uk/ActivityDefinition/GT1124"
   }
  ]
 }

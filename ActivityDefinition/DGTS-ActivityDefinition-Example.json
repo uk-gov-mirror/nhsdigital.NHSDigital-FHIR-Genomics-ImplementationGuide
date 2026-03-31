@@ -1,7 +1,7 @@
 {
  "resourceType": "ActivityDefinition",
  "id": "DGTS-ActivityDefinition-Example",
- "url": "http://fhir.nhs.uk/ActivityDefinition/GT1",
+ "url": "https://fhir.nhs.uk/ActivityDefinition/GT1",
  "identifier": [
   {
    "system": "https://fhir.nhs.uk/Id/England-DigitalGenomicTestServices",
@@ -42,7 +42,7 @@
   ]
  },
  "library": [
-  "http://fhir.nhs.uk/Library/GT1"
+  "https://fhir.nhs.uk/Library/GT1"
  ],
  "specimenRequirement": [
   {
