@@ -1,6 +1,6 @@
  {
   "resourceType": "DiagnosticReport",
-  "id": "DiagnosticReport-ExtensionMediaLinkR5-Example",
+  "id": "DiagnosticReport-ExtensionMediaLink-Example",
   "text": {
    "status": "additional",
    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">An example to illustrate the backport extension to allow referencing a DocumentReference instance within DiagnosticReport.media.link</div>"
