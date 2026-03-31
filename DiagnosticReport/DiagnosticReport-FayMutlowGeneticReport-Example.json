@@ -43,7 +43,7 @@
     "reference": "Patient/Patient-FayMutlow-Example",
     "identifier": {
       "system": "https://fhir.nhs.uk/Id/nhs-number",
-      "value": "9449307806",
+      "value": "9449307806"
     }
   },
   "issued": "2023-10-09T09:45:00Z",

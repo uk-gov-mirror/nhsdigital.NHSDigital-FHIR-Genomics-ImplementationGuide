@@ -1,6 +1,12 @@
 {
  "resourceType": "RequestGroup",
  "id": "RequestGroup-WGSTrioTesting-Example",
+ "extension": [
+  {
+   "url": "https://fhir.nhs.uk/England/StructureDefinition/Extension-GenomicTest-ParticipantCount",
+   "valueInteger": 3
+  }
+ ],
  "identifier": [
   {
    "system": "https://fhir.leedssth.nhs.uk//Id/grouptestId",

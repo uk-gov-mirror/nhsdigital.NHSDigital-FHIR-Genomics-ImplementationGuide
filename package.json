@@ -9,8 +9,7 @@
     "hl7.fhir.eu.laboratory": "0.1.0-ballot",
     "fhir.r4.ukcore.stu3.currentbuild": "0.28.0-pre-release",
     "ihe.iti.pcf": "1.0.0-comment",
-    "hl7.fhir.uv.extensions.r4": "5.3.0-ballot-tc1",
-    "hl7.fhir.uv.xver-r5.r4": "0.0.1-snapshot-2"
+    "hl7.fhir.uv.extensions.r4": "5.3.0-ballot-tc1"
   },
   "fhirVersions": [
     "4.0.1"

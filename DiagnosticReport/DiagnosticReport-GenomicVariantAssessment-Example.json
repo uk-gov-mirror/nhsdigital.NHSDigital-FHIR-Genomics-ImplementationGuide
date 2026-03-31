@@ -99,7 +99,7 @@
   "reference": "Patient/Patient-PheobeSmitham-Example",
   "identifier": {
    "system": "https://fhir.nhs.uk/Id/nhs-number",
-   "value": "9449307539",
+   "value": "9449307539"
   }
  },
  "effectiveDateTime": "2023-10-16T00:00:00-05:00",
@@ -122,7 +122,7 @@
    "link": {
     "extension": [
      {
-      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-DiagnosticReport.media.link",
+      "url": "http://hl7.org/fhir/StructureDefinition/alternate-reference",
       "valueReference": {
        "reference": "DocumentReference/DocumentReference-StructureReporting-Example"
       }
