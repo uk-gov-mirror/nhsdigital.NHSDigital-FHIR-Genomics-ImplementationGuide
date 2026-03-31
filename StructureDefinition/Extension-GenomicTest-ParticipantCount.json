@@ -31,6 +31,10 @@
     {
       "type": "element",
       "expression": "RequestGroup"
+    },
+    {
+      "type": "element",
+      "expression": "ServiceRequest"
     }
   ],
   "type": "Extension",
