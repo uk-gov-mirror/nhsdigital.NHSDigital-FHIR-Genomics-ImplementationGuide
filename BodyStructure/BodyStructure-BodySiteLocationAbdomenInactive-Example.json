@@ -1,0 +1,29 @@
+{
+	"resourceType": "BodyStructure",
+	"id": "BodyStructure-BodySiteLocationAbdomenInactive-Example",
+	"morphology": {
+		"coding": [
+			{
+				"system": "http://snomed.info/sct",
+				"code": "61783007",
+				"display": "Acute right-sided heart failure"
+			}
+		]
+	},
+	"location": {
+		"coding": [
+			{
+				"system": "http://snomed.info/sct",
+				"code": "61783007",
+				"display": "Acute right-sided heart failure"
+			}
+		]
+	},
+	"patient": {
+		"reference": "Patient/Patient-MeirLieberman-Example",
+		"identifier": {
+			"system": "https://fhir.nhs.uk/Id/nhs-number",
+			"value": "9449307873"
+		}
+	}
+}
