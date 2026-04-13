@@ -1,0 +1,577 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-ServiceRequest-Genomics",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
+  "version": "0.2.0",
+  "name": "NHSEngland_ServiceRequest_Genomics",
+  "title": "NHSEngland ServiceRequest Genomics",
+  "status": "draft",
+  "date": "2024-07-22T17:04:32.2218991+00:00",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the NHS England-Genomics Programme constraints and extensions on the FHIR UK Core resource [UK Core ServiceRequest](https://simplifier.net/hl7fhirukcorer4/ukcore-servicerequest)",
+  "purpose": "This profile is a record of a request for a procedure or diagnostic or other service to be planned, proposed, or performed, as distinguished by the ServiceRequest.intent field value, with or on a patient.",
+  "copyright": "Copyright © 2023+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "ServiceRequest",
+  "baseDefinition": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-ServiceRequest",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "ServiceRequest.extension",
+        "path": "ServiceRequest.extension",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.extension:additionalContact",
+        "path": "ServiceRequest.extension",
+        "sliceName": "additionalContact",
+        "definition": "Extension used for recording additional personnel who should be contacted regarding questions related to a test order. This is separate from the requester or reporting address.\r\n\r\nThe additional contact SHOULD be a reference to a PractitionerRole resource wherever possible and SHALL contain contact details for the practitioner.\r\n\r\nAdditionally, where are there multiple practitioners involved in providing care who need to be listed as contacts, the contact details for each practitioner (or service) SHOULD be specified through additional additionalContact entries."
+      },
+      {
+        "id": "ServiceRequest.extension:coverage",
+        "path": "ServiceRequest.extension",
+        "sliceName": "coverage",
+        "definition": "SHALL be present for Genomic Order Management test orders. Extension for recording how work against the test order is being funded. The ValueSet bound to this extension is currently under review by the NHS England Genomics Informatics Working Advisory Group and subject to change.",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.extension:genomicParticipantCount",
+        "path": "ServiceRequest.extension",
+        "sliceName": "genomicParticipantCount",
+        "definition": "Genomics specific extension used to record the total number of participants in a group test request.(e.g. family, duo / trio). SHALL be provided on the Proband test request which is part of a group. This will be copied to the RequestGroup to inform lab orchestration.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.nhs.uk/England/StructureDefinition/Extension-GenomicTest-ParticipantCount"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "ServiceRequest.extension:genomicPatientRole",
+        "path": "ServiceRequest.extension",
+        "sliceName": "genomicPatientRole",
+        "definition": "Genomics specific extension to support family testing. SHALL be present on requests in Duo/Trio use cases where there is a need to differentiate a request for a Proband (which needs to be reported on), from the request for a consultand, which may not result in a report.\r\nIt is expected that this will impact the Tasks spun up by the central service, though this is currently still under development.",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.nhs.uk/England/StructureDefinition/Extension-Genomic-Patient-Role"
+            ]
+          }
+        ],
+        "isModifier": false,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/genomics-patient-role"
+        }
+      },
+      {
+        "id": "ServiceRequest.identifier",
+        "path": "ServiceRequest.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "Automatically assigned by the central service, though source systems MAY provide a local identifier for tracking within their own system, in which case the central order number is appended to the identifiers array.\r\n",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.identifier:identifierGMSOrder",
+        "path": "ServiceRequest.identifier",
+        "sliceName": "identifierGMSOrder",
+        "max": "1"
+      },
+      {
+        "id": "ServiceRequest.identifier:identifierGMSOrder.use",
+        "path": "ServiceRequest.identifier.use",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.identifier:identifierGMSOrder.type",
+        "path": "ServiceRequest.identifier.type",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.identifier:identifierGMSOrder.system",
+        "path": "ServiceRequest.identifier.system",
+        "min": 1,
+        "fixedUri": "https://fhir.nhs.uk/Id/GMSOrder"
+      },
+      {
+        "id": "ServiceRequest.identifier:identifierGMSOrder.value",
+        "path": "ServiceRequest.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.identifier:identifierGMSOrder.period",
+        "path": "ServiceRequest.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.identifier:identifierGMSOrder.assigner",
+        "path": "ServiceRequest.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.identifier:localIdentifier",
+        "path": "ServiceRequest.identifier",
+        "sliceName": "localIdentifier"
+      },
+      {
+        "id": "ServiceRequest.identifier:localIdentifier.system",
+        "path": "ServiceRequest.identifier.system",
+        "min": 1,
+        "fixedUri": "https://fhir.nhs.uk/local-identifier/servicerequest"
+      },
+      {
+        "id": "ServiceRequest.identifier:localIdentifier.value",
+        "path": "ServiceRequest.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.identifier:localIdentifier.assigner",
+        "path": "ServiceRequest.identifier.assigner",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.identifier:localIdentifier.assigner.reference",
+        "path": "ServiceRequest.identifier.assigner.reference",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.identifier:localIdentifier.assigner.identifier",
+        "path": "ServiceRequest.identifier.assigner.identifier",
+        "min": 1,
+        "fixedIdentifier": {
+          "system": "https://fhir.nhs.uk/Id/ods-organization-code"
+        }
+      },
+      {
+        "id": "ServiceRequest.basedOn",
+        "path": "ServiceRequest.basedOn",
+        "definition": "SHALL reference a parent request where this ServiceRequest is based on a previous request, e.g. in the case of reanalysis (where prior outputs/data are used) and cascade testing (where processing of a prior request has triggered the current request), or **Germline Late tests in the Tumour First/Germline Late scenario** (to link tests where prior requests contain clinical context).\r\nIt is expected that the prior request should be referenced from ServiceRequest.basedOn if data or outputs from the prior request are required in order to properly interpret the current request. If a banked sample needs to be processed, e.g. in the case of a request on Stored DNA, it is expected that this would be referenced directly from ServiceRequest.specimen.\r\n\r\nWhere multiple samples are associated with a previous request, it is expected only one would be active, e.g. marked as available, making the sample to be reprocessed unambiguous. In cases the data is required, rather than reprocessing of the sample itself, referencing the previous request is sufficient. However, if there are multiple active samples associated with a previous request, and a subset of the samples need to be reprocessed, the sample(s) itself SHALL be referenced from ServiceRequest.specimen as above. If multiple outputs are associated with a previous request, i.e. data from multiple samples, a ServiceRequest SHOULD reference the data to be reinterpreted/reanalysed through ServiceRequest.supportingInfo.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/StructureDefinition/CarePlan",
+              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-MedicationRequest",
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.replaces",
+        "path": "ServiceRequest.replaces",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.requisition",
+        "path": "ServiceRequest.requisition",
+        "definition": "SHALL be added for Duo/Trio (familial) requests in order to link tests together. Requisition Identifiers are used to generate RequestGroup resources that assist with management of linked requests. SHALL NOT be populated for other types of test (singleton) or other scenarios where requests/results need to be linked (see `ServiceRequest.basedOn` guidance).\r\nFor cases where the requisition identifier is required, it is expected that this is provided by client systems, as there are no rules on the central service that would be able to determine whether the test request is part of a Duo/Trio. As there are no central naming systems for requisition identifiers, it is expected the identifiers will be local identifiers following guidance on Referencing and Identifiers. Other mechanisms for determining or setting the requisition identifier, e.g. by the central service, or deterministically using patient/request identifiers are being investigated by the NHS England Genomics Unit.\r\n\r\nFor subsequent requests which are part of a group, it is expected the requisition identifier will be retrieved from the prior request, e.g. for the proband, either from the central broker or via some offline means, and will be recreated on the additional request exactly, including system and assigner, so the requests can be linked."
+      },
+      {
+        "id": "ServiceRequest.status",
+        "path": "ServiceRequest.status",
+        "definition": "SHALL be provided. ServiceRequests SHOULD be marked as `draft` until ready to be acted upon, after which the user should mark the ServiceRequest as `active`.\r\nA ServiceRequest with the status of draft is assumed to be incomplete, i.e. missing information required for further processing. As such, a central order management broker SHOULD refrain from adding Tasks for the ServiceRequest until it is marked as active, at which time the necessary Tasks are spun up automatically by the broker (this is to be tested within the Genomic Order Management beta). Keeping a ServiceRequest in the draft state allows other parties to populate additional data required, such as phenotypic information from a dedicated service, or further information via a web portal. It is expected that draft ServiceRequests will be purged from the system after a period of inactivity with appropriate warnings (yet to be determined) to avoid stale orders from obscuring live tests/results.\r\n\r\nA ServiceRequest may be marked as 'on-hold' if work against it cannot continue temporarily, e.g. due to certain prerequisite information not being provided. A ServiceRequest SHOULD be marked as 'revoked' if cancelled, either by the lab performing work against the order or at the request of the requesting clinician, though in each case a Provenance resource SHALL be provided to capture why the state change has occurred. The requesting clinician may also mark the ServiceRequest as entered-in-error, though implications for work already in progress needs to be investigated further.\r\n\r\nA ServiceRequest SHOULD only be marked as completed by the requesting clinician upon receipt and review of the resulting DiagnosticReport.",
+        "comment": "The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see [Interactions](https://simplifier.net/guide/fhir-genomics-implementation-guide/home/design/interactions.page.md) for general discussion) or using the [Task](https://simplifier.net/guide/fhir-genomics-implementation-guide/home/fhirassets/allassets/profiles/genomics-task.page.md) resource."
+      },
+      {
+        "id": "ServiceRequest.intent",
+        "path": "ServiceRequest.intent",
+        "definition": "SHALL be provided. ServiceRequests SHOULD be marked as 'order' unless they have been raised by a lab in response to an existing ServiceRequest, in which case they SHOULD be marked as 'reflex-order'. For reflex orders, the ServiceRequest.basedOn field SHALL be populated with the original ServiceRequest, for traceability."
+      },
+      {
+        "id": "ServiceRequest.category",
+        "path": "ServiceRequest.category",
+        "slicing": {
+          "rules": "open"
+        },
+        "definition": "Category SHALL be populated with the reason for the request being ordered e.g. Diagnostic, Carrier, Predictive, Stored DNA etc. The final list of applicable codes which can be selected is still under review, the Genomic-ReasonforTesting ValueSet SHOULD be used for this categorisation.",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.category:reasonForTesting",
+        "path": "ServiceRequest.category",
+        "sliceName": "reasonForTesting",
+        "min": 1,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/genomics-reasonfortesting"
+        }
+      },
+      {
+        "id": "ServiceRequest.priority",
+        "path": "ServiceRequest.priority",
+        "definition": "ServiceRequests marked as urgent (i.e. not routine) SHOULD populate the extension:priorityReason with why an urgent test is being requested. This SHOULD ideally be coded using SNOMED CT concepts. Multiple priorityReason extensions are allowed within a single ServiceRequest in order to aid post-coordination."
+      },
+      {
+        "id": "ServiceRequest.doNotPerform",
+        "path": "ServiceRequest.doNotPerform",
+        "definition": "For the purposes of Genomic Test Ordering, the doNotPerform field SHALL NOT be used. All ServiceRequests requests received by the system will be assumed to be orders for services/testing.",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.code",
+        "path": "ServiceRequest.code",
+        "definition": "SHOULD be provided if known. If populated, Code SHOULD contain an appropriate test code, preferrably a DGTS Genomic Test code, though NGTD codes MAY be used during the transition period, currently available at https://www.england.nhs.uk/publication/national-genomic-test-directories/. There is currently a prototype DGTS FHIR API in development to support querying/retrieving codes.\r\nCodes from the Genomic Test Directory SHOULD also specify the version number of the test at the time the test is being ordered, to ensure the test methods used are consistent with that version.",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.code.coding",
+        "path": "ServiceRequest.code.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "ServiceRequest.code.coding:DGTSCode",
+        "path": "ServiceRequest.code.coding",
+        "sliceName": "DGTSCode",
+        "max": "1"
+      },
+      {
+        "id": "ServiceRequest.code.coding:DGTSCode.extension:genomicTestCodeVersion",
+        "path": "ServiceRequest.code.coding.extension",
+        "sliceName": "genomicTestCodeVersion",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.nhs.uk/England/StructureDefinition/Extension-GenomicTestCode-Version"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "ServiceRequest.code.coding:DGTSCode.system",
+        "path": "ServiceRequest.code.coding.system",
+        "fixedUri": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService"
+      },
+      {
+        "id": "ServiceRequest.orderDetail",
+        "path": "ServiceRequest.orderDetail",
+        "definition": "If additional coded details need to captured as part of a test order, e.g. Panels or targeted genes, these SHOULD be represented using the 'orderDetail' field, with the main indication captured using the 'reasonCode' field. If completely separate pathways/samples etc. are required for processing against the codes, it is expected these would be requested via multiple ServiceRequests instead of a single ServiceRequest with multiple orderDetail codes. The exact cut-off for when orderDetail vs. multiple ServiceRequest should be used is still being investigated. An appropriate code(Panel codes) SHOULD come from the following NamingSystem: England-GenomicTestPanelCode\r\nFor Cancer WGS, where no panel or test-level details are relevant, orderDetail SHOULD be omitted."
+      },
+      {
+        "id": "ServiceRequest.orderDetail.coding",
+        "path": "ServiceRequest.orderDetail.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "value",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "ServiceRequest.orderDetail.coding:genomicsTestPanelCode",
+        "path": "ServiceRequest.orderDetail.coding",
+        "sliceName": "genomicsTestPanelCode"
+      },
+      {
+        "id": "ServiceRequest.orderDetail.coding:genomicsTestPanelCode.extension:genomicTestCodeVersion",
+        "path": "ServiceRequest.orderDetail.coding.extension",
+        "sliceName": "genomicTestCodeVersion",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.nhs.uk/England/StructureDefinition/Extension-GenomicTestCode-Version"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "ServiceRequest.orderDetail.coding:genomicsTestPanelCode.system",
+        "path": "ServiceRequest.orderDetail.coding.system",
+        "short": "Genomics Test Panel Code",
+        "fixedUri": "https://fhir.nhs.uk/CodeSystem/England-GenomicTestPanelCode"
+      },
+      {
+        "id": "ServiceRequest.quantity[x]",
+        "path": "ServiceRequest.quantity[x]",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.subject",
+        "path": "ServiceRequest.subject",
+        "definition": "SHALL be provided. Reference to the associated Patient. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.encounter",
+        "path": "ServiceRequest.encounter",
+        "type": [
+          {
+            "code": "Reference",
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.occurrence[x]",
+        "path": "ServiceRequest.occurrence[x]",
+        "definition": "If a result is required by a specific date, this MAY be indicated though occurrenceDateTime, though there is no guarantee from the GMS that the ServiceRequest will be processed in the time frame specified."
+      },
+      {
+        "id": "ServiceRequest.asNeeded[x]",
+        "path": "ServiceRequest.asNeeded[x]",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.authoredOn",
+        "path": "ServiceRequest.authoredOn",
+        "definition": "SHALL be populated by the client upon submission, either manually by the user or automatically by the system integrating with the central GMS.",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.requester",
+        "path": "ServiceRequest.requester",
+        "definition": "SHALL be populated on all ServiceRequests submitted to the central GMS. This SHALL reference a PractitionerRole resource also submitted to the system (either within a single transaction or previously POSTed).",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.performerType",
+        "path": "ServiceRequest.performerType",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.performer",
+        "path": "ServiceRequest.performer",
+        "definition": "Allows a requester to assign processing of the ServiceRequest to a particular organization (e.g. a remote GLH). The performer field SHOULD be populated with the ODS code for the managing organization/GLH.\r\nIn the future state, ServiceRequests may be kept open, by not specifying a performer, allowing them to be picked up by the local GLH or otherwise routed based on by test routing (TBC).",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.performer.identifier",
+        "path": "ServiceRequest.performer.identifier",
+        "min": 1
+      },
+      {
+        "id": "ServiceRequest.performer.identifier.system",
+        "path": "ServiceRequest.performer.identifier.system",
+        "fixedUri": "https://fhir.nhs.uk/Id/ods-organization-code"
+      },
+      {
+        "id": "ServiceRequest.locationCode",
+        "path": "ServiceRequest.locationCode",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.locationReference",
+        "path": "ServiceRequest.locationReference",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.reasonCode",
+        "path": "ServiceRequest.reasonCode",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "coding.system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "ServiceRequest.reasonCode:DGTSTestPackage",
+        "path": "ServiceRequest.reasonCode",
+        "sliceName": "DGTSTestPackage",
+        "definition": "reasonCode SHALL be populated with the Test Package code for the order.",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "ServiceRequest.reasonCode:DGTSTestPackage.coding.extension:genomicTestCodeVersion",
+        "path": "ServiceRequest.reasonCode.coding.extension",
+        "sliceName": "genomicTestCodeVersion",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "https://fhir.nhs.uk/England/StructureDefinition/Extension-GenomicTestCode-Version"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "ServiceRequest.reasonCode:DGTSTestPackage.coding.system",
+        "path": "ServiceRequest.reasonCode.coding.system",
+        "fixedUri": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService"
+      },
+      {
+        "id": "ServiceRequest.reasonReference",
+        "path": "ServiceRequest.reasonReference",
+        "definition": "Reference SHOULD be associated to the primary condition being tested for. Required if additional information related to the condition, such as onsetAge, needs to be captured for interpretation.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.insurance",
+        "path": "ServiceRequest.insurance",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.supportingInfo",
+        "path": "ServiceRequest.supportingInfo",
+        "definition": "Any clinical information provided about the patient for whom the testing is being requested SHALL be referenced though the supportingInfo field, to ensure all the information relevant to the ServiceRequest can be easily retrieved. This includes Observations, Conditions, Procedures, FamilyMemberHistories etc.\r\nThis also includes resources related to family members included as part of testing (consultands), e.g. in Duo/Trio scenarios. In this instance, RelatedPerson and Patient resource references for the consultands SHALL be added to the supportingInfo array, as well as any clinical resources related to these individuals. This is to ensure the number of participants for a given test can be calculated correctly, e.g. through counting the number of RelatedPerson resources referenced from ServiceRequest.supportingInfo plus the subject of the ServiceRequest itself (the proband).\r\n\r\nFor WGS testing, where Records of Discussion are required in order to process the test, Consent resources SHOULD also be added to the supportingInfo array once available.",
+        "type": [
+          {
+            "code": "Reference",
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.specimen",
+        "path": "ServiceRequest.specimen",
+        "definition": "ServiceRequests where the required samples already exist, e.g. in the case where a specimen already in storage needs to be processed, SHOULD reference these samples through the ServiceRequest.specimen field. Where samples need to be collected to support testing, these SHOULD instead reference the ServiceRequest, through Specimen.request (i.e. the service request has prompted collection of the sample), and these Specimen resources do not need to be referenced from within ServiceRequest.supportingInfo. The referenced Specimen resources SHOULD either be contained within the test order transaction bundle or already exist on the central GMS.\r\nIn the case of Reanalysis or Reinterpretation tests, Specimens related to previous ServiceRequest are not required to be added to the new test request. The links from the previous ServiceRequest can be followed to identify the Specimens that resulted in the data being reanalysed, e.g. (reanalysis) ServiceRequest.basedOn -> (prior) ServiceRequest, (prior) ServiceRequest <- (original) Specimen.request\r\n\r\nFor requests based on prior requests where multiple samples 'active' are associated with the prior request. The specific sample to be reprocessed SHALL be referenced from ServiceRequest.specimen.",
+        "type": [
+          {
+            "code": "Reference",
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ServiceRequest.bodySite",
+        "path": "ServiceRequest.bodySite",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.note",
+        "path": "ServiceRequest.note",
+        "definition": "Any information which cannot be readily be structured SHOULD be entered into the note field, though prolific use of the field to capture clinical information which better fits in level 3/4 FHIR resources is discouraged.\r\nTo support disambiguation of notes originating from different fields in a client system, the AnnotationType extension MAY be used, specifying the UI element name in text (coded elements for the full list of free text UI elements expected within Test Order forms is pending finalisation and addition to the Genomic Order Management MDS). The author element MAY also be used to reference a Practitioner, by identifier or name (string), indicating the person who created the note."
+      },
+      {
+        "id": "ServiceRequest.note.extension:annotationType",
+        "path": "ServiceRequest.note.extension",
+        "sliceName": "annotationType",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/annotationType"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "ServiceRequest.patientInstruction",
+        "path": "ServiceRequest.patientInstruction",
+        "max": "0"
+      },
+      {
+        "id": "ServiceRequest.relevantHistory",
+        "path": "ServiceRequest.relevantHistory",
+        "max": "0"
+      }
+    ]
+  }
+}

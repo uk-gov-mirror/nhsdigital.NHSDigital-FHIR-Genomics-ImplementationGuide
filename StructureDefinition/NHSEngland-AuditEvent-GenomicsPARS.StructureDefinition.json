@@ -1,0 +1,31 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-AuditEvent-GenomicsPARS",
+  "name": "NHSEngland_AuditEvent_GenomicsPARS",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "AuditEvent",
+  "baseDefinition": "https://fhir.nhs.uk/England/StructureDefinition/England-AuditEvent-PARS",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "AuditEvent.action",
+        "path": "AuditEvent.action",
+        "definition": "SHALL be present. Code from base HL7 resource, only C (create), R (read) and U (update) would usually be expected."
+      },
+      {
+        "id": "AuditEvent.agent",
+        "path": "AuditEvent.agent",
+        "definition": "SHOULD be present for any user initiated actions. Reference to the user or system that triggered the creation/read/update. Identity SHOULD be determined through the appropriate authentication token within the request header, e.g. CIS2 auth token."
+      },
+      {
+        "id": "AuditEvent.entity",
+        "path": "AuditEvent.entity",
+        "definition": "SHOULD be present where the resource exists on the server. Reference to the resource which was affected by the event."
+      }
+    ]
+  }
+}

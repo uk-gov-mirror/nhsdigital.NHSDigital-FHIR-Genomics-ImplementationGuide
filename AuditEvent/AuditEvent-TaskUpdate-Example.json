@@ -21,6 +21,7 @@
 				]
 			},
 			"who": {
+				"type": "PractitionerRole",
 				"reference": "PractitionerRole/PractitionerRole-TestClinicalScientist-Example",
 				"identifier": {
 					"system": "https://fhir.nhs.uk/Id/sds-user-id",
@@ -29,17 +30,41 @@
 			},
 			"name": "Test Clinical Scientist",
 			"requestor": true
+		},
+		{
+			"who": {
+				"type": "Organization",
+				"identifier": {
+					"system": "https://fhir.nhs.uk/Id/ods-organization-code",
+					"value": "ABC"
+				}
+			},
+			"requestor": true
 		}
 	],
 	"source": {
 		"observer": {
-			"reference": "PractitionerRole/PractitionerRole-TestClinicalScientist-Example"
-		}
+			"identifier": {
+					"system": "https://fhir.nhs.uk/Id/product-id",
+					"value": "GOMS"
+				},
+				"display": "Genomic Order Management Service"
+		},
+		"type": [
+			{
+				"system": "http://terminology.hl7.org/CodeSystem/security-source-type",
+				"code": "2"
+			}
+		]
 	},
 	"entity": [
 		{
 			"what": {
-				"reference": "Task/Task-NonWGSRareDiseaseTestOrderRejected-Example"
+				"reference": "Task/Task-NonWGSRareDiseaseTestOrderRejected-Example",
+				"identifier": {
+					"system": "urn:ietf:rfc:3986",
+					"value": "urn:uuid:3148c7da-59f3-439f-b729-847a607831fc"
+				}
 			},
 			"type": {
 				"system": "http://hl7.org/fhir/resource-types",
@@ -50,6 +75,36 @@
 				"system": "http://terminology.hl7.org/CodeSystem/object-role",
 				"code": "20",
 				"display": "Job"
+			}
+		},
+		{
+			"what": {
+				"identifier": {
+					"system": "https://fhir.nhs.uk/Id/nhs-number",
+					"value": "9449307873"
+				}
+			},
+			"type": {
+				"system": "http://terminology.hl7.org/CodeSystem/audit-entity-type",
+				"code": "1",
+				"display": "Person"
+			},
+			"role": {
+				"system": "http://terminology.hl7.org/CodeSystem/object-role",
+				"code": "1",
+				"display": "Patient"
+			}
+		},
+		{
+			"what": {
+				"identifier": {
+					"system": "https://fhir.nhs.uk/Id/transaction",
+					"value": "76d148b6-586d-11ec-bf63-0242ac130082"
+				}
+			},
+			"type": {
+				"system": "https://profiles.ihe.net/ITI/BALP/CodeSystem/BasicAuditEntityType",
+				"code": "XrequestId"
 			}
 		}
 	]

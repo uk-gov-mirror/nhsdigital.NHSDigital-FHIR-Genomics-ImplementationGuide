@@ -1,0 +1,83 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Group-Genomics",
+  "name": "NHSEngland_Group_Genomics",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Group",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Group",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Group.identifier",
+        "path": "Group.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "SHALL be present. The Pedigree Number assigned by the clinical genetics service. The central pedigree NamingSystem SHOULD be used to support cross region sharing of pedigree/family unit information."
+      },
+      {
+        "id": "Group.identifier:identifierPedigree",
+        "path": "Group.identifier",
+        "sliceName": "identifierPedigree",
+        "min": 1,
+        "max": "1"
+      },
+      {
+        "id": "Group.identifier:identifierPedigree.system",
+        "path": "Group.identifier.system",
+        "fixedUri": "https://fhir.nhs.uk/Id/genomics-pedigree-number"
+      },
+      {
+        "id": "Group.type",
+        "path": "Group.type",
+        "definition": "For Pedigrees a fixed value of \"person\" SHALL be used",
+        "fixedCode": "person"
+      },
+      {
+        "id": "Group.actual",
+        "path": "Group.actual",
+        "definition": "For Pedigrees a fixed value of true SHALL be used",
+        "fixedBoolean": true
+      },
+      {
+        "id": "Group.member",
+        "path": "Group.member",
+        "definition": "SHALL be present. `entity` SHOULD be a reference to a Patient resource within the GOMS infrastructure or a unique identifier where this is not possible. `period` SHOULD record the date the member was added to the Group. `inactive` MAY be used to record entities which are no longer members of the group, though if an individual was added to a Group in error and should never have been part of the group, the entity SHALL be removed entirely.",
+        "min": 1
+      },
+      {
+        "id": "Group.member.entity",
+        "path": "Group.member.entity",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/Medication",
+              "http://hl7.org/fhir/StructureDefinition/Substance",
+              "http://hl7.org/fhir/StructureDefinition/Group"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

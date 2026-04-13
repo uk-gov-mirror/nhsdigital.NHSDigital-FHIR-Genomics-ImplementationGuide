@@ -1,0 +1,73 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RequestGroup-Genomics",
+  "name": "NHSEngland_RequestGroup_Genomics",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "RequestGroup",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/RequestGroup",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "RequestGroup.identifier",
+        "path": "RequestGroup.identifier",
+        "definition": "Automatically assigned by the central service, matching the ServiceRequest.requisition."
+      },
+      {
+        "id": "RequestGroup.basedOn",
+        "path": "RequestGroup.basedOn",
+        "max": "0"
+      },
+      {
+        "id": "RequestGroup.groupIdentifier",
+        "path": "RequestGroup.groupIdentifier",
+        "max": "0"
+      },
+      {
+        "id": "RequestGroup.status",
+        "path": "RequestGroup.status",
+        "definition": "Automatically assigned by the central service, status will be propagated based on the included ServiceRequests. At the point a ServiceRequest is added, either in `draft` or `active` state, the RequestGroup will be marked as `active`. If all ServiceRequests under the RequestGroup are marked as `completed` or `revoked`, this will be propagated up to the request group level.\r\nPropagation of other statuses is currently under review."
+      },
+      {
+        "id": "RequestGroup.subject",
+        "path": "RequestGroup.subject",
+        "definition": "Automatically assigned by the central service. SHALL match the subject referenced from the Proband request.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient",
+              "http://hl7.org/fhir/StructureDefinition/Group"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RequestGroup.encounter",
+        "path": "RequestGroup.encounter",
+        "max": "0"
+      },
+      {
+        "id": "RequestGroup.author",
+        "path": "RequestGroup.author",
+        "max": "0"
+      },
+      {
+        "id": "RequestGroup.note",
+        "path": "RequestGroup.note",
+        "max": "0"
+      },
+      {
+        "id": "RequestGroup.action",
+        "path": "RequestGroup.action",
+        "definition": "Automatically updated by the central service upon receipt of a request with a requisition identifier. Additional requests will be added to an existing request group if they share a requisition identifier with an existing service request.",
+        "min": 1
+      }
+    ]
+  }
+}

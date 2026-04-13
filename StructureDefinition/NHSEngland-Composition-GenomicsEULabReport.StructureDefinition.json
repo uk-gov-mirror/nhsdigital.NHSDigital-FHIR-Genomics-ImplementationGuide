@@ -1,0 +1,292 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Composition-GenomicsEULabReport",
+  "name": "NHSEngland_Composition_GenomicsEULabReport",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Composition",
+  "baseDefinition": "http://hl7.eu/fhir/laboratory/StructureDefinition/Composition-eu-lab",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Composition.extension:basedOn-order-or-requisition",
+        "path": "Composition.extension",
+        "sliceName": "basedOn-order-or-requisition",
+        "definition": "TBC. Only relevant for EU Lab aligned reports (included in HL7 EU Laboratory Report: Composition Profile). A reference to the ServiceRequest which this report is in response to."
+      },
+      {
+        "id": "Composition.extension:basedOn-order-or-requisition.value[x]:valueReference",
+        "path": "Composition.extension.value[x]",
+        "sliceName": "valueReference",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
+              "http://hl7.eu/fhir/laboratory/StructureDefinition/ServiceRequest-eu-lab"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.extension:information-recipient",
+        "path": "Composition.extension",
+        "sliceName": "information-recipient",
+        "definition": "TBC. Only relevant for EU Lab aligned reports (included in HL7 EU Laboratory Report: Composition Profile). A reference to the recipient for a report, could potentially be used to reference additional recipients over the subject and original requester for the request."
+      },
+      {
+        "id": "Composition.extension:information-recipient.value[x]",
+        "path": "Composition.extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
+              "http://hl7.eu/fhir/laboratory/StructureDefinition/Practitioner-eu-lab",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.eu/fhir/laboratory/StructureDefinition/Patient-eu-lab",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.eu/fhir/laboratory/StructureDefinition/PractitionerRole-eu-lab",
+              "http://hl7.org/fhir/StructureDefinition/Organization"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.extension:diagnosticReport-reference",
+        "path": "Composition.extension",
+        "sliceName": "diagnosticReport-reference",
+        "definition": "TBC. Only relevant for EU Lab aligned reports (included in HL7 EU Laboratory Report: Composition Profile). A reference to the focal DiagnosticReport this Composition is for."
+      },
+      {
+        "id": "Composition.extension:diagnosticReport-reference.value[x]",
+        "path": "Composition.extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
+              "http://hl7.eu/fhir/laboratory/StructureDefinition/DiagnosticReport-eu-lab"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.status",
+        "path": "Composition.status",
+        "definition": "Fixed value of 'final'",
+        "fixedCode": "final"
+      },
+      {
+        "id": "Composition.type",
+        "path": "Composition.type",
+        "definition": "SNOMED CT code for either a Laboratory Request (24691000000102) or Genetic report (1054161000000101)"
+      },
+      {
+        "id": "Composition.type.coding",
+        "path": "Composition.type.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Composition.type.coding.display.extension:translation",
+        "path": "Composition.type.coding.display.extension",
+        "sliceName": "translation"
+      },
+      {
+        "id": "Composition.type.coding.display.extension:translation.extension",
+        "path": "Composition.type.coding.display.extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Composition.type.coding:codingGenomics",
+        "path": "Composition.type.coding",
+        "sliceName": "codingGenomics",
+        "fixedCoding": {
+          "system": "http://snomed.info/sct",
+          "code": "1054161000000101",
+          "display": "Genetic report"
+        }
+      },
+      {
+        "id": "Composition.type.coding:codingGenomics.display.extension:translation",
+        "path": "Composition.type.coding.display.extension",
+        "sliceName": "translation"
+      },
+      {
+        "id": "Composition.type.coding:codingGenomics.display.extension:translation.extension",
+        "path": "Composition.type.coding.display.extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Composition.type.text.extension:translation",
+        "path": "Composition.type.text.extension",
+        "sliceName": "translation"
+      },
+      {
+        "id": "Composition.type.text.extension:translation.extension",
+        "path": "Composition.type.text.extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Composition.category",
+        "path": "Composition.category",
+        "slicing": {
+          "rules": "open"
+        },
+        "definition": "Fixed codes for conformance to the EU Lab Composition profile (for cross border sharing of lab reports)."
+      },
+      {
+        "id": "Composition.category.coding.display.extension:translation",
+        "path": "Composition.category.coding.display.extension",
+        "sliceName": "translation"
+      },
+      {
+        "id": "Composition.category.coding.display.extension:translation.extension",
+        "path": "Composition.category.coding.display.extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Composition.category.text.extension:translation",
+        "path": "Composition.category.text.extension",
+        "sliceName": "translation"
+      },
+      {
+        "id": "Composition.category.text.extension:translation.extension",
+        "path": "Composition.category.text.extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Composition.category:studyType",
+        "path": "Composition.category",
+        "sliceName": "studyType",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": " http://loinc.org",
+              "code": "26436-6",
+              "display": "Laboratory studies (set)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.category:specialty",
+        "path": "Composition.category",
+        "sliceName": "specialty",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": " http://snomed.info/sct",
+              "code": "1236877003",
+              "display": "Genetic pathology"
+            }
+          ]
+        }
+      },
+      {
+        "id": "Composition.subject",
+        "path": "Composition.subject",
+        "definition": "Matches subject reference included in either the DiagnosticReport or ServiceRequest",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.eu/fhir/laboratory/StructureDefinition/Patient-eu-lab",
+              "http://hl7.eu/fhir/laboratory/StructureDefinition/Patient-animal-eu-lab",
+              "http://hl7.org/fhir/StructureDefinition/Group",
+              "http://hl7.org/fhir/StructureDefinition/Location",
+              "http://hl7.org/fhir/StructureDefinition/Device"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Composition.date",
+        "path": "Composition.date",
+        "definition": "SHALL be the dateTime the Composition was generated by the central broker"
+      },
+      {
+        "id": "Composition.author",
+        "path": "Composition.author",
+        "definition": "Fixed to an identifier for the central broker (TBC). The author for the underlying ServiceRequest or DiagnosticReport can be retrieved by interrogating the appropriate resources."
+      },
+      {
+        "id": "Composition.title",
+        "path": "Composition.title",
+        "definition": "SHALL match the SNOMED CT display used within Composition.type",
+        "fixedString": "Genetic report"
+      },
+      {
+        "id": "Composition.section",
+        "path": "Composition.section",
+        "slicing": {
+          "rules": "open"
+        },
+        "definition": "To conform to EU Lab, SHOULD include references to the results that form part of the genomic report. For the UGR, will include sections that conform to the UGR folders, this work is currently in development."
+      },
+      {
+        "id": "Composition.section.code.coding.display.extension:translation",
+        "path": "Composition.section.code.coding.display.extension",
+        "sliceName": "translation"
+      },
+      {
+        "id": "Composition.section.code.coding.display.extension:translation.extension",
+        "path": "Composition.section.code.coding.display.extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Composition.section.code.text.extension:translation",
+        "path": "Composition.section.code.text.extension",
+        "sliceName": "translation"
+      },
+      {
+        "id": "Composition.section.code.text.extension:translation.extension",
+        "path": "Composition.section.code.text.extension.extension",
+        "min": 2
+      },
+      {
+        "id": "Composition.section:sectionUGR",
+        "path": "Composition.section",
+        "sliceName": "sectionUGR",
+        "definition": "Sections included within the UGR: patient-demographics | investigations-and-procedures-requested | investigation-results | consent-for-information-sharing |  family-history "
+      },
+      {
+        "id": "Composition.section:sectionUGR.code",
+        "path": "Composition.section.code",
+        "binding": {
+          "strength": "extensible",
+          "description": "UK Core Composition Section Codes",
+          "valueSet": "https://fhir.hl7.org.uk/ValueSet/UKCore-CompositionSectionCode"
+        }
+      }
+    ]
+  }
+}

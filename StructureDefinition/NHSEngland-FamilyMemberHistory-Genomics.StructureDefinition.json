@@ -1,0 +1,65 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-FamilyMemberHistory-Genomics",
+  "name": "NHSEngland_FamilyMemberHistory_Genomics",
+  "status": "draft",
+  "date": "2023-02-06",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "FamilyMemberHistory",
+  "baseDefinition": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-FamilyMemberHistory",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "FamilyMemberHistory.extension:fMHObservation",
+        "path": "FamilyMemberHistory.extension",
+        "sliceName": "fMHObservation",
+        "definition": "An extension on the FamilyMemberHistory resource to include Observations relevant to Genomic testing/interpretation.\r\n",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-observation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "FamilyMemberHistory.identifier",
+        "path": "FamilyMemberHistory.identifier",
+        "definition": "This SHOULD be NHS number or local identifier (if NHS number is unavailable e.g. for non UK residents), though this MAY be omitted if no identifier for the family member is known. If a local identifier is used, an assigner SHALL be provided. The FamilyMemberHistory.identifier field SHALL match the identifier used for a RelatedPerson resource if the same person is being referenced.",
+        "max": "1"
+      },
+      {
+        "id": "FamilyMemberHistory.status",
+        "path": "FamilyMemberHistory.status",
+        "definition": "Used to mark the completeness of a given family member's clinical history. If the history of a family member is expected but no history could be obtained, this element SHOULD be filled with 'health-unknown'.\r\nAssertions regarding absence of relevant history SHOULD follow guidance within the HL7 FHIR R4 FamilyMemberHistory resource"
+      },
+      {
+        "id": "FamilyMemberHistory.patient",
+        "path": "FamilyMemberHistory.patient",
+        "definition": "SHALL be present. Reference to the associated proband Patient for which this family history is being obtained. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "FamilyMemberHistory.relationship",
+        "path": "FamilyMemberHistory.relationship",
+        "definition": "SHALL be present. Relationship between the person the FamilyMemberHistory references and the proband Patient. Clinical histories for each family member are expected to be recorded in separate FamilyMemberHistory resources. If multiple resources are required, both FamilyMemberHistory and related clinical artifacts such as Condition/Observation resources, these MAY be contained within a List resource to improve readability."
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Provenance-Genomics",
+  "name": "NHSEngland_Provenance_Genomics",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Provenance",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Provenance",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Provenance.target",
+        "path": "Provenance.target",
+        "definition": "SHALL be provided. This SHOULD be a reference to the resource on the central GMS system that was updated.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
+              "http://hl7.org/fhir/StructureDefinition/Resource"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Provenance.recorded",
+        "path": "Provenance.recorded",
+        "definition": "SHALL be provided, the date/time when the update took place."
+      },
+      {
+        "id": "Provenance.reason",
+        "path": "Provenance.reason",
+        "definition": "The reason why the update took place. If the codes provided by HL7 are not granular enough, or additional notes need to be recorded detailing the reasoning behind a change, this SHOULD be added as text to 'reason.text'.",
+        "min": 1
+      },
+      {
+        "id": "Provenance.agent",
+        "path": "Provenance.agent",
+        "definition": "SHOULD be provided where actions are user initiated. The user which performed the change, as identified through CIS2 authentication token."
+      },
+      {
+        "id": "Provenance.signature",
+        "path": "Provenance.signature",
+        "definition": "Signed, encrypted copy of the document, for validation that the document has not been tampered with (the requirement to include this field has not yet been validated)."
+      }
+    ]
+  }
+}

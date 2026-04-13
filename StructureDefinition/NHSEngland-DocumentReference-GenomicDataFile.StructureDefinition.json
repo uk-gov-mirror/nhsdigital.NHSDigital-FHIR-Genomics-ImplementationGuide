@@ -1,0 +1,143 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DocumentReference-GenomicDataFile",
+  "name": "NHSEngland_DocumentReference_GenomicDataFile",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DocumentReference",
+  "baseDefinition": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-data-file",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DocumentReference.subject",
+        "path": "DocumentReference.subject",
+        "definition": "SHOULD be present if related to a patient. Reference to the Patient this data file is pertaining to. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/Group",
+              "http://hl7.org/fhir/StructureDefinition/Device"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DocumentReference.author",
+        "path": "DocumentReference.author",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "SHOULD reference the organization responsible for creating the data file, preferably by ODS code."
+      },
+      {
+        "id": "DocumentReference.author:authorODS",
+        "path": "DocumentReference.author",
+        "sliceName": "authorODS"
+      },
+      {
+        "id": "DocumentReference.author:authorODS.reference",
+        "path": "DocumentReference.author.reference",
+        "max": "0"
+      },
+      {
+        "id": "DocumentReference.author:authorODS.identifier",
+        "path": "DocumentReference.author.identifier",
+        "min": 1
+      },
+      {
+        "id": "DocumentReference.author:authorODS.identifier.system",
+        "path": "DocumentReference.author.identifier.system",
+        "fixedUri": "https://fhir.nhs.uk/Id/ods-organization-code"
+      },
+      {
+        "id": "DocumentReference.description",
+        "path": "DocumentReference.description",
+        "definition": "Human readable description for the data file. NOTE: this is being used in place of DocumentReference.type until suitable LOINC or SNOMED CT concepts are identified for the file types expected."
+      },
+      {
+        "id": "DocumentReference.content",
+        "path": "DocumentReference.content",
+        "definition": "SHOULD be a DRS compatible reference to the data file."
+      },
+      {
+        "id": "DocumentReference.context",
+        "path": "DocumentReference.context",
+        "definition": "In all cases the DocumentReference SHOULD reference the DNA Specimen from which the data originated, where available, and the ServiceRequest which triggered the capture of the data.\r\nThe DiagnosticReport using the data file SHOULD reference the DocumentReference via the DiagnosticReport.extension:supporting-info element. This guidance will be updated upon release of the R5 backport of DiagnosticReport.media, allowing references to DocumentReference. Once backported, the DiagnosticReport.media.link SHOULD be used to reference the DocumentReference resources for data files analysed for the report instead."
+      },
+      {
+        "id": "DocumentReference.context.related",
+        "path": "DocumentReference.context.related",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "type"
+            }
+          ],
+          "rules": "open"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
+              "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DocumentReference.context.related:relatedServiceRequest",
+        "path": "DocumentReference.context.related",
+        "sliceName": "relatedServiceRequest"
+      },
+      {
+        "id": "DocumentReference.context.related:relatedServiceRequest.reference",
+        "path": "DocumentReference.context.related.reference",
+        "min": 1
+      },
+      {
+        "id": "DocumentReference.context.related:relatedServiceRequest.type",
+        "path": "DocumentReference.context.related.type",
+        "fixedUri": "ServiceRequest"
+      },
+      {
+        "id": "DocumentReference.context.related:relatedSpecimen",
+        "path": "DocumentReference.context.related",
+        "sliceName": "relatedSpecimen"
+      },
+      {
+        "id": "DocumentReference.context.related:relatedSpecimen.reference",
+        "path": "DocumentReference.context.related.reference",
+        "min": 1
+      },
+      {
+        "id": "DocumentReference.context.related:relatedSpecimen.type",
+        "path": "DocumentReference.context.related.type",
+        "fixedUri": "Specimen"
+      }
+    ]
+  }
+}

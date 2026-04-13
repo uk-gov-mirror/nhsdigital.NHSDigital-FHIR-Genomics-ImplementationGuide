@@ -1,7 +1,7 @@
 {
   "resourceType": "StructureDefinition",
-  "url": "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Patient-Genomics",
-  "name": "NHSDigital_Patient_Genomics",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+  "name": "NHSEngland_Patient_Genomics",
   "status": "draft",
   "date": "2022-11-13T17:36:08.5828032+00:00",
   "fhirVersion": "4.0.1",
@@ -15,50 +15,36 @@
       {
         "id": "Patient.extension",
         "path": "Patient.extension",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "value",
-              "path": "url"
-            }
-          ],
-          "rules": "open"
-        },
-        "min": 3
+        "min": 2
       },
       {
         "id": "Patient.extension:birthPlace",
         "path": "Patient.extension",
         "sliceName": "birthPlace",
-        "min": 0,
         "max": "0"
       },
       {
         "id": "Patient.extension:birthSex",
         "path": "Patient.extension",
         "sliceName": "birthSex",
-        "min": 0,
-        "max": "1"
+        "definition": "Extension used for recording the phenotypic sex of the patient, as recorded at birth."
       },
       {
         "id": "Patient.extension:cadavericDonor",
         "path": "Patient.extension",
         "sliceName": "cadavericDonor",
-        "min": 0,
         "max": "0"
       },
       {
         "id": "Patient.extension:contactPreference",
         "path": "Patient.extension",
         "sliceName": "contactPreference",
-        "min": 0,
         "max": "0"
       },
       {
         "id": "Patient.extension:deathNotificationStatus",
         "path": "Patient.extension",
         "sliceName": "deathNotificationStatus",
-        "min": 0,
         "max": "0"
       },
       {
@@ -66,6 +52,12 @@
         "path": "Patient.extension",
         "sliceName": "ethnicCategory",
         "min": 1
+      },
+      {
+        "id": "Patient.extension:fetalStatus",
+        "path": "Patient.extension",
+        "sliceName": "fetalStatus",
+        "definition": "Extension used for determining the life status of the fetus. SHOULD always be present for a fetal patient record to help with identification."
       },
       {
         "id": "Patient.extension:residentialStatus",
@@ -77,23 +69,12 @@
         "id": "Patient.extension:patientInterpreterRequired",
         "path": "Patient.extension",
         "sliceName": "patientInterpreterRequired",
-        "min": 0,
         "max": "0"
       },
       {
         "id": "Patient.extension:nhsNumberUnavailableReason",
         "path": "Patient.extension",
         "sliceName": "nhsNumberUnavailableReason",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "https://fhir.hl7.org.uk/StructureDefinition/Extension-UKCore-NHSNumberUnavailableReason"
-            ]
-          }
-        ],
         "constraint": [
           {
             "key": "gen-2",
@@ -101,8 +82,13 @@
             "human": "Reason must be provided if NHS number is not provided",
             "expression": "(Patient.extension(nhsNumberUnavailableReason).exists() and Patient.identifier(nhsNumber).notExists()) or Patient.identifier(nhsNumber).exists()"
           }
-        ],
-        "isModifier": false
+        ]
+      },
+      {
+        "id": "Patient.identifier",
+        "path": "Patient.identifier",
+        "definition": "SHALL be present for Patients within the Genomic Order Management ecosystem. It is preferred that all patients with an NHS number have this included within the Patient resource upon submission of a test order. Patient who do not have an NHS number SHOULD have a temporary one registered/assigned with PDS.\r\nFor patient records where the NHS number has been traced from PDS, the trace status SHOULD be provided within the NHS Number identifier slice.\r\n\r\nAdditional identifiers SHOULD include an appropriate naming system scheme which clearly identifies the assigner (to disambiguate the identifier from other resources where these are not nationally unique). Alternatively, the OID for local identifier MAY be used, with the 'assigner' organization explicitly referenced.",
+        "min": 1
       },
       {
         "id": "Patient.identifier:nhsNumber",
@@ -116,29 +102,28 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Organization-Genomics"
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
             ]
           }
         ]
       },
       {
-        "id": "Patient.identifier:pedigreeNumber",
+        "id": "Patient.identifier:localIdentifier",
         "path": "Patient.identifier",
-        "sliceName": "pedigreeNumber",
-        "fixedIdentifier": {
-          "system": "https://fhir.nhs.uk/Id/genomics-pedigree-number"
-        }
+        "sliceName": "localIdentifier"
       },
       {
-        "id": "Patient.identifier:pedigreeNumber.system",
-        "path": "Patient.identifier.system",
-        "min": 1,
-        "fixedUri": "https://fhir.nhs.uk/Id/genomics-pedigree-number"
-      },
-      {
-        "id": "Patient.identifier:pedigreeNumber.value",
-        "path": "Patient.identifier.value",
+        "id": "Patient.identifier:localIdentifier.assigner",
+        "path": "Patient.identifier.assigner",
         "min": 1
+      },
+      {
+        "id": "Patient.identifier:localIdentifier.assigner.identifier",
+        "path": "Patient.identifier.assigner.identifier",
+        "min": 1,
+        "fixedIdentifier": {
+          "system": "https://fhir.nhs.uk/Id/ods-organization-code"
+        }
       },
       {
         "id": "Patient.name",
@@ -158,23 +143,6 @@
         "max": "1"
       },
       {
-        "id": "Patient.gender",
-        "path": "Patient.gender",
-        "min": 0,
-        "max": "1"
-      },
-      {
-        "id": "Patient.birthDate",
-        "path": "Patient.birthDate",
-        "min": 1
-      },
-      {
-        "id": "Patient.address",
-        "path": "Patient.address",
-        "min": 1,
-        "max": "1"
-      },
-      {
         "id": "Patient.maritalStatus",
         "path": "Patient.maritalStatus",
         "max": "0"
@@ -185,34 +153,6 @@
         "max": "0"
       },
       {
-        "id": "Patient.contact.organization",
-        "path": "Patient.contact.organization",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Organization-Genomics"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "Patient.contact.organization.identifier.assigner",
-        "path": "Patient.contact.organization.identifier.assigner",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Organization-Genomics"
-            ]
-          }
-        ]
-      },
-      {
         "id": "Patient.communication",
         "path": "Patient.communication",
         "max": "0"
@@ -220,37 +160,12 @@
       {
         "id": "Patient.generalPractitioner",
         "path": "Patient.generalPractitioner",
-        "max": "1",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Practitioner-Genomics",
-              "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Organization-Genomics",
-              "https://fhir.nhs.uk/StructureDefinition/NHSDigital-PractitionerRole-Genomics"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
+        "max": "0"
       },
       {
-        "id": "Patient.managingOrganization",
-        "path": "Patient.managingOrganization",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Organization-Genomics"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
+        "id": "Patient.link",
+        "path": "Patient.link",
+        "definition": "For patient records where additional information exists elsewhere, for example, within PDS or the source system EHR, this MAY be referenced through the link field, specifying the url through which the related patient information can be accessed."
       }
     ]
   }

@@ -33,19 +33,19 @@
    "resource": [
     {
      "type": "AuditEvent",
-     "profile": "http://hl7.org/fhir/StructureDefinition/AuditEvent"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-AuditEvent-GenomicsPARS"
     },
     {
      "type": "Bundle",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Bundle"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Bundle-Genomics"
     },
     {
      "type": "Composition",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Composition"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Composition-GenomicsEULabReport"
     },
     {
      "type": "DocumentReference",
-     "profile": "http://hl7.org/fhir/StructureDefinition/DocumentReference"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DocumentReference-GenomicDataFile
     },
     {
      "type": "CodeSystem",
@@ -97,15 +97,15 @@
     },
     {
      "type": "Task",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Task"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Task-Genomics"
     },
     {
      "type": "ServiceRequest",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-ServiceRequest"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics"
     },
     {
      "type": "PractitionerRole",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics"
     },
     {
      "type": "Practitioner",
@@ -117,27 +117,27 @@
     },
     {
      "type": "DiagnosticReport",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-DiagnosticReport"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport"
     },
     {
      "type": "FamilyMemberHistory",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-FamilyMemberHistory"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-FamilyMemberHistory-Genomics"
     },
     {
      "type": "Observation",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Observation"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Observation-GenomicsLab"
     },
     {
      "type": "Patient",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Patient"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics"
     },
     {
      "type": "Consent",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Consent"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Consent-GenomicsPCF"
     },
     {
      "type": "Condition",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Condition"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-mCODE"
     },
     {
      "type": "ResearchSubject",
@@ -145,11 +145,11 @@
     },
     {
      "type": "RelatedPerson",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-RelatedPerson"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RelatedPerson-Genomics"
     },
     {
      "type": "Specimen",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Specimen"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics"
     },
     {
      "type": "Questionnaire",
@@ -169,15 +169,15 @@
     },
     {
      "type": "BodyStructure",
-     "profile": "http://hl7.org/fhir/StructureDefinition/BodyStructure"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-BodyStructure-mCODE"
     },
     {
      "type": "Provenance",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Provenance"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Provenance-Genomics"
     },
     {
      "type": "RequestGroup",
-     "profile": "http://hl7.org/fhir/StructureDefinition/RequestGroup"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RequestGroup-Genomics"
     }
    ]
   }

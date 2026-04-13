@@ -1,0 +1,171 @@
+{
+  "resourceType": "StructureDefinition",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Observation-GenomicsLab",
+  "name": "NHSEngland_Observation_GenomicsLab",
+  "status": "draft",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Observation",
+  "baseDefinition": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Observation-Lab",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Observation.extension:obsReplaces",
+        "path": "Observation.extension",
+        "sliceName": "obsReplaces",
+        "definition": "A core extension on the base HL7 International Observation resource. Used to link to previous Observation resources which have been invalidated by this Observation instance, e.g. for cases where a previously present HPO term is now no longer applicable. For new observations which invalidate previous observations made about a patient, the new Observation resource SHOULD be created, and MAY reference the invalidated observation via the observation-replaces extension.",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/observation-replaces"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Observation.partOf",
+        "path": "Observation.partOf",
+        "definition": "To record the device/software that generated an observation. Our recommendation is that this element SHOULD reference the Genomic Study Procedure profile and its extension:genomic-study-analysis SHOULD reference the Procedure resource for the Genomic Study Analysis",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study",
+              "http://hl7.org/fhir/StructureDefinition/MedicationAdministration",
+              "http://hl7.org/fhir/StructureDefinition/MedicationDispense",
+              "http://hl7.org/fhir/StructureDefinition/MedicationStatement",
+              "http://hl7.org/fhir/StructureDefinition/Procedure",
+              "http://hl7.org/fhir/StructureDefinition/Immunization",
+              "http://hl7.org/fhir/StructureDefinition/ImagingStudy"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.status",
+        "path": "Observation.status",
+        "definition": "SHOULD be marked as final for most observations unless corrected after submission. Observations within Genomics are used to represent a point-in-time observation made about a patient or specimen. This means Observations should not be updated post-submission unless the original Observation has been entered in error or incorrectly coded (in this case, the appropriate status SHALL be used, e.g. entered-in-error or corrected, respectively)."
+      },
+      {
+        "id": "Observation.code",
+        "path": "Observation.code",
+        "definition": "SHALL be present. SNOMED CT coding is preferred, though it is expected that alternative codings will be used depending on the appropriateness for a particular observation e.g. HPO or other codings found within the HL7 International Genomic Reporting IG as their use may already be widespread within Genomics. If a SNOMED CT equivalent exists for a code regularly captured within another CodeSystem, additional 'coding' elements within 'code' SHOULD be provided to aid analytics.\r\n\r\nFor 'PCI-6 - Phenotypic details', HPO terms SHALL be used, using codes from the Human Phenotype Ontology.\r\n\r\nWhen recording HPO codes, the Observation.code.coding.system SHALL be fixed to http://human-phenotype-ontology.org"
+      },
+      {
+        "id": "Observation.code.coding",
+        "path": "Observation.code.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Observation.code.coding:codingSnomedCT",
+        "path": "Observation.code.coding",
+        "sliceName": "codingSnomedCT"
+      },
+      {
+        "id": "Observation.code.coding:codingSnomedCT.system",
+        "path": "Observation.code.coding.system",
+        "fixedUri": "http://snomed.info/sct"
+      },
+      {
+        "id": "Observation.code.coding:codingHPO",
+        "path": "Observation.code.coding",
+        "sliceName": "codingHPO"
+      },
+      {
+        "id": "Observation.code.coding:codingHPO.system",
+        "path": "Observation.code.coding.system",
+        "fixedUri": "http://human-phenotype-ontology.org"
+      },
+      {
+        "id": "Observation.subject",
+        "path": "Observation.subject",
+        "definition": "SHALL be present. Reference to the associated Patient. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.focus",
+        "path": "Observation.focus",
+        "definition": "For recording the what the observation relates to, e.g. Specimen or Condition, when the observation relevant to the focal resource rather than the patient themselves e.g. Sample nucleated cell count.\r\nNote: Tumour type and cellularity observations relate to the collected sample rather than the primary condition being tested for, which means these observations should reference the Specimen resource instead of a Condition",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Resource"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.effective[x]",
+        "path": "Observation.effective[x]",
+        "definition": "It is expected that all Observations SHOULD include the effective time the observation was made, if known, to aid interpretation."
+      },
+      {
+        "id": "Observation.performer",
+        "path": "Observation.performer",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+              "http://hl7.org/fhir/StructureDefinition/Organization",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam",
+              "http://hl7.org/fhir/StructureDefinition/Patient",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Observation.value[x]",
+        "path": "Observation.value[x]",
+        "definition": "The value element SHOULD use the most appropriate data type for the observation in question. Using preferred CodeSystems as specified within HL7 International FHIR R4 or the UK Core. For asserting absence of a particular condition/situation, the finding SHOULD be specified within the 'code' element and 'valueBoolean' set to 'false' or 'valueCodeableConcept' set to an appropriate qualifier value code from SNOMED CT.\r\nHPO terms are recorded as being either Absent or Present, this is represented within FHIR by the HPO term being recorded in Observation.code.coding.code, with the Absent/Present status being recorded as Observation.valueBoolean set as false or true respectively.\r\n\r\nFor an assertion of a particular situation being present, e.g. a Condition or Procedure having been performed, these SHOULD be collected within the relevant clinical resources, alongside additional information needed to inform interpretation."
+      },
+      {
+        "id": "Observation.component",
+        "path": "Observation.component",
+        "definition": "SHOULD be used to group qualifiers of an observation. In particular, details regarding observations related to a pregnancy SHOULD be added as components on a pregnancy status observation.\r\nExamples of how pregnancy information can be captured within Observations (pregnancy status with EDD, gestation etc. recorded as components) will be added to the Fetus Management Clinical Scenario."
+      }
+    ]
+  }
+}
