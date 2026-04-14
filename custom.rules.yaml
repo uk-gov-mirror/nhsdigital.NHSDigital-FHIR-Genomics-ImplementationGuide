@@ -1,0 +1,29 @@
+ # This is the minimal rule series
+ 
+- action: parse
+  name: parse-fhir-resources 
+  status: "Checking if all FHIR Resource files can be parsed"
+  files:
+    - /**/*.json
+    - "!package.json"
+    - "!*.*"
+    - "!.github/*.*"
+    - "!documents/*.*"
+    - "!Diagrams/*.*"
+ 
+- name: resource-validation
+  status: "Validating resources against the FHIR standard and their profiles"  
+  action: validate
+  category: Resource
+  suppress: 
+        - 6005
+        - eld-16
+        - ref-1
+ 
+- action: unique
+  name: unique-canonicals
+  status: "Checking if all StructureDefinitions have a unique canonical"
+  category: StructureDefinition
+  unique: url 
+
+- include: manifest
