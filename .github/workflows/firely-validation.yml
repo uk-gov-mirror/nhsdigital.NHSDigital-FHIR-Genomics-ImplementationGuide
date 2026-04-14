@@ -43,8 +43,8 @@ jobs:
         uses: FirelyTeam/firely-terminal-pipeline@v0.7.31
         with:
           PATH_TO_CONFORMANCE_RESOURCES: StructureDefinition ValueSet CodeSystem
-          # PATH_TO_EXAMPLES: Examples
-          #PATH_TO_QUALITY_CONTROL_RULES: unittest
+          PATH_TO_EXAMPLES: ActivityDefinition AuditEvent BodyStructure Bundle CapabilityStatement Composition ConceptMap Condition Consent Device DiagnosticReport DocumentReference FamilyMemberHistory GraphDefinition Group Library MessageDefinition MessageHeader NamingSystem Observation OperationDefinition OperationOutcome Organization Parameters Patient PlanDefinition Practitioner PractitionerRole Procedure Provenance Questionnaire QuestionnaireResponse RelatedPerson RequestGroup SearchParameter ServiceRequest Specimen SpecimenDefinition StructureMap Subscription Task
+          PATH_TO_QUALITY_CONTROL_RULES: custom
           DOTNET_VALIDATION_ENABLED: true
           JAVA_VALIDATION_ENABLED: false
           #EXPECTED_FAILS: VALIDATION_EXAMPLES_JAVA
