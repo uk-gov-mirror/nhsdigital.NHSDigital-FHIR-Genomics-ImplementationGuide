@@ -19,6 +19,7 @@
         - 6005
         - eld-16
         - ref-1
+        - dom-6
  
 - action: unique
   name: unique-canonicals
