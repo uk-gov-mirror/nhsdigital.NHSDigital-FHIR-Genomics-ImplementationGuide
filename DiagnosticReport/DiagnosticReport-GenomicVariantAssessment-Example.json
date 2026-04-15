@@ -1,13 +1,6 @@
 {
  "resourceType": "DiagnosticReport",
  "id": "DiagnosticReport-GenomicVariantAssessment-Example",
- "meta": {
-  "profile": [
-   "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report",
-   "https://fhir.hl7.org.uk/StructureDefinition/UKCore-DiagnosticReport",
-   "http://hl7.eu/fhir/laboratory/StructureDefinition/DiagnosticReport-eu-lab"
-  ]
- },
  "extension": [
   {
    "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-DiagnosticReport.composition",

@@ -1,5 +1,3 @@
- # This is the minimal rule series
- 
 - action: parse
   name: parse-fhir-resources 
   status: "Checking if all FHIR Resource files can be parsed"
@@ -20,6 +18,11 @@
         - eld-16
         - ref-1
         - dom-6
+        - 1012 #ref-1
+        - 4005 # forgotten
+        - CONFIG #errors in dependencies e.g. loops, outdated, pre-release
+        - 6006 #failure to contact term service
+        - 1030 #reference loop
  
 - action: unique
   name: unique-canonicals

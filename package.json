@@ -19,5 +19,5 @@
   "fhirVersions": [
     "4.0.1"
   ],
-  "jurisdiction": "urn:iso:std:iso:3166:-2:GB-ENG"
+  "jurisdiction": "urn:iso:std:iso:3166:-2#GB"
 }
