@@ -373,7 +373,7 @@
       {
        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
        "code": "inactive",
-       "display": "inactive"
+       "display": "Inactive"
       }
      ]
     },

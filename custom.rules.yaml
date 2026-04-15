@@ -1,5 +1,3 @@
- # This is the minimal rule series
- 
 - action: parse
   name: parse-fhir-resources 
   status: "Checking if all FHIR Resource files can be parsed"
@@ -20,6 +18,10 @@
         - eld-16
         - ref-1
         - dom-6
+        - 1012
+        - 4005
+        - CONFIG
+        - 6006
  
 - action: unique
   name: unique-canonicals
