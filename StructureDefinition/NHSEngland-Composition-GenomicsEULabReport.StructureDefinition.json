@@ -185,7 +185,7 @@
         "fixedCodeableConcept": {
           "coding": [
             {
-              "system": " http://loinc.org",
+              "system": "http://loinc.org",
               "code": "26436-6",
               "display": "Laboratory studies (set)"
             }
@@ -199,7 +199,7 @@
         "fixedCodeableConcept": {
           "coding": [
             {
-              "system": " http://snomed.info/sct",
+              "system": "http://snomed.info/sct",
               "code": "1236877003",
               "display": "Genetic pathology"
             }
