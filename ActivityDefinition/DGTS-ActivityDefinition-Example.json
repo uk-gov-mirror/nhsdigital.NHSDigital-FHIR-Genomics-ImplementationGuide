@@ -14,6 +14,7 @@
   }
  ],
  "title": "15q11 critical region (AS/PWS) - MLPA or equivalent",
+ "name": "GT1_ActivityDefinition",
  "version": "1.0",
  "status": "active",
  "experimental": false,
