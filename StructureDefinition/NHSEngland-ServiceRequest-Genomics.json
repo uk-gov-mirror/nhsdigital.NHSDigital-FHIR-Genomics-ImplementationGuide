@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-ServiceRequest-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "name": "NHSEngland_ServiceRequest_Genomics",
   "title": "NHSEngland ServiceRequest Genomics",
-  "status": "draft",
-  "date": "2024-07-22T17:04:32.2218991+00:00",
+  "status": "active",
+  "date": "2026-04-16",
   "publisher": "NHS England",
   "contact": [
     {
@@ -21,9 +21,9 @@
       ]
     }
   ],
-  "description": "This profile defines the NHS England-Genomics Programme constraints and extensions on the FHIR UK Core resource [UK Core ServiceRequest](https://simplifier.net/hl7fhirukcorer4/ukcore-servicerequest)",
-  "purpose": "This profile is a record of a request for a procedure or diagnostic or other service to be planned, proposed, or performed, as distinguished by the ServiceRequest.intent field value, with or on a patient.",
-  "copyright": "Copyright © 2023+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core FHIR resource [ServiceRequest](https://fhir.hl7.org.uk/StructureDefinition/UKCore-ServiceRequest).",
+  "purpose": "Focal resource for test order messages. All additional information or resources SHOULD be linked back to the ServiceRequest or be referenced from the ServiceRequest directly.\r\n\r\nServiceRequests which have been updated post submission SHALL be accompanied by Provenance resources, referencing the ServiceRequest which detail when the resource was changed, who made the change and why.\r\n\r\nNote on inheritance from prior requests\r\nIt is expected that the ServiceRequest.basedOn SHALL reference a parent request where this ServiceRequest is based a previous request, e.g. in the case of reanalysis (where prior outputs/data are used) and cascade testing (where processing of a prior request has triggered the current request), or Germline Late tests in the Tumour First/Germline Late scenario (to link prior test which contain clinical context).\r\n\r\nIt is expected that the prior request should be referenced from ServiceRequest.basedOn if data or outputs from the prior request are required in order to properly interpret the current request. If a banked sample needs to be processed, e.g. in the case of a request on Stored DNA, it is expected that this would be referenced directly from ServiceRequest.specimen.\r\n\r\nWhere multiple samples are associated with a previous request, it is expected only one would be active, e.g. marked as available. Additionally, in most cases the data is required, rather than reprocessing of the sample itself, in which case referencing the previous request is sufficient. However, if there are multiple active samples associated with a previous request, and a subset of the samples need to be reprocessed, the sample(s) itself SHOULD be referenced from ServiceRequest.specimen as above. If multiple outputs, i.e. data from multiple samples, are associated with a previous request, a ServiceRequest MAY reference the data to be reinterpreted/reanalysed through ServiceRequest.supportingInfo.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

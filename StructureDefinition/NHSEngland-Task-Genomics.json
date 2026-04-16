@@ -1,8 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Task-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Task-Genomics",
+  "version": "0.3.0",
   "name": "NHSEngland_Task_Genomics",
-  "status": "draft",
+  "title": "NHSEngland Task Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the International FHIR resource [Task](http://hl7.org/fhir/StructureDefinition/Task).",
+  "purpose": "The core workflow resource for managing processing of a ServiceRequest from order through to delivery of a DiagnosticReport and completion is Task. Task tracking is a core requirement of the central Genomic Medicine Service.\r\n\r\nEach ServiceRequest submitted will instantiate a series of High Level Tasks, which MAY be assigned to different organizations for managing the test request e.g. Sample Processing, Interpretation, Reporting etc. The full list of possible Task types/codes, their associated business statuses, and status reasons is pending internal review.\r\n\r\nTasks will be automatically created by the central broker but updates to statuses and attachment of input/output resources is the responsibility of the assigned organizations.\r\n\r\nIn most cases, the full library of 10 tasks, as defined within Genomic-Task-Code, will be 'spun-up', on submission of a Test order. Tasks related to Samples MAY be duplicated per Sample to allow tracking of work related to individual Samples as part of the same test request, or equally, MAY be omitted as in the case of Re-Analysis or Re-Interpretation where data from an existing sample is used, eliminating the need for additional wet-work. For the full cardinality breakdown see further guidance for the Task.code element.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

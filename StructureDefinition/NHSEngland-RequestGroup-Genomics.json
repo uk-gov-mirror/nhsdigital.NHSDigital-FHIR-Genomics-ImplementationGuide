@@ -1,8 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-RequestGroup-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RequestGroup-Genomics",
+  "version": "0.3.0",
   "name": "NHSEngland_RequestGroup_Genomics",
-  "status": "draft",
+  "title": "NHSEngland RequestGroup Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the International FHIR resource [RequestGroup](http://hl7.org/fhir/StructureDefinition/RequestGroup).",
+  "purpose": "Used for orchestration of familial test requests, where consultand tests need to be processed for interpretation of the proband. For Tumour First + Germline Late requests, the ServiceRequest.basedOn element SHALL be used instead.\r\n\r\nCreated and managed by the central service upon receipt of a ServiceRequest with a requisition identifier (proband requests are expected to include the extension:genomicPatientRole=Proband to identify them as the Proband request, at which point the RequestGroup will be created). Any requests submitted to the central service with the same requisition identifier will be added to the RequestGroup as additional action.resource references (it is expected that these will be consultand requests, though alternate scenarios, such as change of proband, are being investigated).\r\n\r\nAspects of the RequestGroup will be automatically set based on the constituent requests, e.g. propagating status based on statuses of the ServiceRequests.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

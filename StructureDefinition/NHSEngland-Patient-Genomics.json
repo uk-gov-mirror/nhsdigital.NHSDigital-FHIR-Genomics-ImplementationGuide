@@ -1,9 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Patient-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+  "version": "0.3.0",
   "name": "NHSEngland_Patient_Genomics",
-  "status": "draft",
-  "date": "2022-11-13T17:36:08.5828032+00:00",
+  "title": "NHSEngland Patient Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core FHIR resource [Patient](https://fhir.hl7.org.uk/StructureDefinition/UKCore-Patient).",
+  "purpose": "The focal resource for recording who a test order and genomic report are for.\r\n\r\nIt is expected that client's will need to post Patient resources to the central GMS as some demographic information specific to Genomics will not have been captured within other systems such as PDS.\r\n\r\nFor patients included within PDS, it is expected source systems SHOULD only send genomic specific information not recorded against PDS, e.g. extensions, such as birthSex, genomic specific identifiers and a link to the PDS record, as well as the NHS number identifier. (NOTE: examples provided for patient resources are fully expanded to illustrate how information should be structured but any infomation already recorded by PDS SHOULD NOT be duplicated within the genomic order management services). Querying patient demographic information, will be supported using the search parameters provided by the Genomic Order Management Service, whch will pass through parameters to PDS where demographics are stored against this system. Client systems will then be required to follow the PDS link within the Genomics-Patient record to retrieve the PDS patient.\r\n\r\nIt is a requirement on source systems that patient NHS numbers are traced and verified with PDS, if the patient is registered with PDS, before creation of patient resources on the Genomic Order Management broker.\r\n\r\nFor patients not included on PDS, e.g. private/overseas patients or fetal records, the requester SHOULD send all information necessary to facilitate testing and interpretation of the request. Where this patient is later registered on PDS, identified through assignment of an NHS number, demographic details SHALL be stripped from the genomic record to avoid data duplication.\r\n\r\nAlternatively, systems MAY opt to include pointers to the Patient resource on their local system, though the mechanism preferred by the NHS England Genomics Unit has yet to be decided.\r\n\r\nRestricted Patients: PDS guidance on managing the data of sensitive patient shall be followed. Some patients are tagged as restricted and are sometimes known as sensitive patients. Restricted patients can be retrieved; however, location-sensitive fields such as address, telecom and generalPractitioner are removed.\r\n\r\nThe restricted flag can be found in the data under meta/security on the patient resource. See in Example: Patient-SensitivePatient-Example",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,
@@ -87,6 +107,9 @@
       {
         "id": "Patient.identifier",
         "path": "Patient.identifier",
+        "slicing": {
+          "rules": "open"
+        },
         "definition": "SHALL be present for Patients within the Genomic Order Management ecosystem. It is preferred that all patients with an NHS number have this included within the Patient resource upon submission of a test order. Patient who do not have an NHS number SHOULD have a temporary one registered/assigned with PDS.\r\nFor patient records where the NHS number has been traced from PDS, the trace status SHOULD be provided within the NHS Number identifier slice.\r\n\r\nAdditional identifiers SHOULD include an appropriate naming system scheme which clearly identifies the assigner (to disambiguate the identifier from other resources where these are not nationally unique). Alternatively, the OID for local identifier MAY be used, with the 'assigner' organization explicitly referenced.",
         "min": 1
       },

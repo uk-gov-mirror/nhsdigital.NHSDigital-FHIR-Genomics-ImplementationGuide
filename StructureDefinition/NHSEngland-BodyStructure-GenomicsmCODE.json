@@ -1,0 +1,69 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-BodyStructure-GenomicsmCODE",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-BodyStructure-GenomicsmCODE",
+  "version": "0.3.0",
+  "name": "NHSEngland_BodyStructure_GenomicsmCODE",
+  "title": "NHSEngland BodyStructure GenomicsmCODE",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the mCODE FHIR resource [Tumour BodyStructure](http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor).",
+  "purpose": "Only required where additional elements regarding the body site need to be captured, e.g. histology/morphology. If a simple SNOMED CT anatomical location code is sufficient, this SHOULD be captured in Specimen.bodySite.\r\n\r\nFor metastatic sites vs. primary, the Condition resource SHOULD be used instead, following guidance from the mCode FHIR IG",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "BodyStructure",
+  "baseDefinition": "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-tumor",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "BodyStructure.morphology",
+        "path": "BodyStructure.morphology",
+        "definition": "SHALL be provided where relevant. SHOULD use SNOMED CT encoding. SHOULD use a code under the `14799000 | Neoplasm, metastatic (morphologic abnormality)` concept if the sample has been collected from a metastatic site, as opposed to primary."
+      },
+      {
+        "id": "BodyStructure.location",
+        "path": "BodyStructure.location",
+        "definition": "SHALL be provided where relevant. SHOULD use SNOMED CT encoding. Equivalent to Topography when used in conjunction with locationQualifier."
+      },
+      {
+        "id": "BodyStructure.locationQualifier",
+        "path": "BodyStructure.locationQualifier",
+        "definition": "SHALL be provided where relevant. SHOULD use SNOMED CT encoding."
+      },
+      {
+        "id": "BodyStructure.patient",
+        "path": "BodyStructure.patient",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/us/mcode/StructureDefinition/mcode-cancer-patient"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

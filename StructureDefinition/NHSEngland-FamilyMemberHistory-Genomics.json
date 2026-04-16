@@ -1,9 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-FamilyMemberHistory-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-FamilyMemberHistory-Genomics",
+  "version": "0.3.0",
   "name": "NHSEngland_FamilyMemberHistory_Genomics",
-  "status": "draft",
-  "date": "2023-02-06",
+  "title": "NHSEngland FamilyMemberHistory Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core FHIR resource [FamilyMemberHistory](https://fhir.hl7.org.uk/StructureDefinition/UKCore-FamilyMemberHistory).",
+  "purpose": "For collecting relevant Family Member History to aid interpretation of Genomic results. This is limited to collection of Pedigree information. The FamilyMemberHistory resource is not to be used to record participants involved in testing, e.g. in the case of Duo/Trio scenarios (in this case the RelatedPerson resource SHOULD be used instead).",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

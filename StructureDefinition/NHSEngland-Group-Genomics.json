@@ -1,8 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Group-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Group-Genomics",
+  "version": "0.3.0",
   "name": "NHSEngland_Group_Genomics",
-  "status": "draft",
+  "title": "NHSEngland Group Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the International FHIR resource [Group](http://hl7.org/fhir/StructureDefinition/Group).",
+  "purpose": "Solely for recording patients which are part of a family unit and assigned a Pedigree Number by a clinical genetics service.\r\n\r\nPedigree numbers are generated upon referral of a patient to clinical genetics and are applied to all forms of correspondence from patient letters to genomic orders. These are therefore owned by clinical genetics and referenced back by processing labs.\r\n\r\nSome pedigree numbers reference the relationship between the family members to the original proband, other just have a general pedigree number which relates to all family members. There is disparity in approach across the GU.\r\n\r\nPatients can have multiple pedigree numbers. Single pedigree numbers can also span multiple families with a common patient.\r\n\r\nThis resource SHALL NOT be used for recording family history/relationship data, for this the UKCore-FamilyMemberHistory resource SHOULD be used. Specifically for recording clinical/relationship information, where relations are not included in testing.\r\n\r\nFor linking active test participants, or where demographic information is required, RelatedPerson resources (alongside clinical e.g. condition resources) SHOULD be used instead.\r\n\r\nThis resource SHALL NOT to be used for linking multiple patients to a single request, e.g. for Duo/Trio scenarios. Instead, ServiceRequests SHALL be linked via shared requisition identifiers. See RequestGroup and UKCore-ServiceRequest for guidance on usage of ServiceRequest.requisition and its implication on grouping of requests.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

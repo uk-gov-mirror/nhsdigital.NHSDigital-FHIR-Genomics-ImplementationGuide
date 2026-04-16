@@ -1,8 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Provenance-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Provenance-Genomics",
+  "version": "0.3.0",
   "name": "NHSEngland_Provenance_Genomics",
-  "status": "draft",
+  "title": "NHSEngland Provenance Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the International FHIR resource [Provenance](http://hl7.org/fhir/StructureDefinition/Provenance).",
+  "purpose": "The Genomics Provenance SHOULD be provided alongside updates to controlled documents such as ServiceRequests and DiagnosticReports by integrated systems on any update operation to ensure auditability for any changes to resources.\r\n\r\nIt is not expected that updates which do not affect the clinical content of the document will need associated Provenance resources, e.g. addition of local identifiers (though for the purporses of the Genomic Order Management Alpha, all updates to ServiceRequest and DiagnosticReport resources will be expected to have accompanying Provenance resources). On material changes to controlled resources, ServiceRequest and DiagnosticReport, users SHOULD use the transaction endpoint on the server to bundle the updated resource and Provenance event into a single transaction.\r\n\r\nThe HL7 FHIR specification also provides the capability to attach a Provenance resource using a custom header parameter. Using this mechanism would allow clients to submit requests to the resource specific PUT enpoints for ServiceRequests and DiagnosticReports, while still aloowing changes to be captured within a Provenance resource using a single interaction. ",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

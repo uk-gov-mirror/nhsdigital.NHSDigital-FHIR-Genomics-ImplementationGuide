@@ -1,8 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Observation-GenomicsLab",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Observation-GenomicsLab",
+  "version": "0.3.0",
   "name": "NHSEngland_Observation_GenomicsLab",
-  "status": "draft",
+  "title": "NHSEngland Observation GenomicsLab",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core Resource [Lab Observation](https://fhir.hl7.org.uk/StructureDefinition/UKCore-Observation-Lab).",
+  "purpose": "Used to represent the bulk of clinical information to be sent alongside a Genomic Test Order, as well as clinical results included within structured Diagnostic Reports.\r\n\r\nObservations within Genomics are used to represent a point-in-time observation made about a patient or specimen. This means Observations SHOULD NOT be updated post-submission unless the original Observation has been entered in error or incorrectly coded (in this case, the appropriate status SHALL be used, e.g. entered-in-error or corrected).\r\n\r\nFor new observations which invalidate previous observations made about a patient, a new Observation resource SHOULD be created, the new observation MAY reference the invalidated observation via the observation-replaces extension.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

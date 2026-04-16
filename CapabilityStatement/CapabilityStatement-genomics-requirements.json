@@ -137,7 +137,7 @@
     },
     {
      "type": "Condition",
-     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-mCODE"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-GenomicsmCODE"
     },
     {
      "type": "ResearchSubject",
@@ -169,7 +169,7 @@
     },
     {
      "type": "BodyStructure",
-     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-BodyStructure-mCODE"
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-BodyStructure-GenomicsmCODE"
     },
     {
      "type": "Provenance",

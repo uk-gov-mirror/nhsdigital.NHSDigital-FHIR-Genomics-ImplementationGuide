@@ -1,8 +1,29 @@
 {
   "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Consent-GenomicsPCF",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Consent-GenomicsPCF",
+  "version": "0.3.0",
   "name": "NHSEngland_Consent_GenomicsPCF",
-  "status": "draft",
+  "title": "NHSEngland Consent GenomicsPCF",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the Privacy and Consent on FHIR FHIR resource [Intermediate Consent](https://profiles.ihe.net/ITI/PCF/StructureDefinition/IHE.PCF.consentIntermediate).",
+  "purpose": "Only expected to be used for wrapping Record of Discussion resources within the WGS pathway. Consent for testing is implied through submission of a test to the Genomic Order Management service. Consent for Data Access as part of the UGR SHOULD follow guidance provided within Consent guidance page and the IHE PCF Framework.\r\n\r\nOnly a minimal amount of mandatory information needs to be populated for Order Management recording of RoDs.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
   "fhirVersion": "4.0.1",
   "kind": "resource",
   "abstract": false,

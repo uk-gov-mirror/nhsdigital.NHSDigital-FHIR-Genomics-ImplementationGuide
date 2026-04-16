@@ -1358,7 +1358,7 @@
     },
     {
      "type": "Condition",
-     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-mCODE",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-GenomicsmCODE",
      "documentation": "Endpoints for interacting with Condition resources",
      "interaction": [
       {
@@ -1709,7 +1709,7 @@
     },
     {
      "type": "BodyStructure",
-     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-BodyStructure-mCODE",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-BodyStructure-GenomicsmCODE",
      "documentation": "Endpoints for interacting with BodyStructure resources",
      "interaction": [
       {
