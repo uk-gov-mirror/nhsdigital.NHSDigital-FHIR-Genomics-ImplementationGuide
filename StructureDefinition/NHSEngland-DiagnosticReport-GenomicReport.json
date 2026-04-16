@@ -1,0 +1,399 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-DiagnosticReport-GenomicReport",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
+  "version": "0.3.0",
+  "name": "NHSEngland_DiagnosticReport_GenomicReport",
+  "title": "NHSEngland DiagnosticReport GenomicReport",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the Genomics Reporting FHIR resource [Genomic Report DiagnosticReport](http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report).",
+  "purpose": "DiagnosticReports containing the results of genomic testing are expected to be attached/provided as PDF documents during the alpha phase of the GMS development programme.\r\n\r\nIt is expected structured DiagnosticReports will mimic the structure proposed within the HL7 International Genomic Reporting IG.\r\n\r\nAdditionally, to support sharing across borders, lab reports MAY additionally be aligned to the HL7 EU Lab Implementation guide. Details of elements of interest for alignment with the EU DiagnosticReport profile are provided below.\r\n\r\nGenomic DiagnosticReports which have been updated post submission SHALL be accompanied by Provenance resources, referencing the DiagnosticReport which detail when the resource was changed, who made the change and why.\r\n\r\nWhilst unstructured Diagnostic Reports can also be represented by DocumentReference resources, the DiagnosticReport resource is preferred for any documents constituting actual reports, as the resource allows capture of metadata not present in DocumentReference, such as the resultsInterpreter, specimen or conclusion, which would help in searching or for analytics. Use of DocumentReference resources is limited to other data files or documents.\r\n\r\nWhere binary data is uploaded to the central server, as in the case of unstructured reports, information cannot be redacted by the central service if a patient is marked as sensitive. It is the responsibility of source systems to redact the necessary information from binary files for sensitive patients before sending this data to the central broker, this includes information such as address and GP details in line with PDS.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "DiagnosticReport",
+  "baseDefinition": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "DiagnosticReport.extension:recommended-action",
+        "path": "DiagnosticReport.extension",
+        "sliceName": "recommended-action",
+        "definition": "TBC. Only relevant for structured genomic reports (included in the Genomic Report Profile in the Genomics Report IG). Reference to Task resource indicating recommended action to take in response to the report's result/conclusion."
+      },
+      {
+        "id": "DiagnosticReport.extension:supporting-info",
+        "path": "DiagnosticReport.extension",
+        "sliceName": "supporting-info",
+        "definition": "TBC. Only relevant for structured genomic reports (included in the Genomic Report Profile in the Genomics Report IG). Reference to the genomic data files analysed as part of the test order, forming the report. Reference to DocumentReference resource which links to the binary data file."
+      },
+      {
+        "id": "DiagnosticReport.extension:genomic-study",
+        "path": "DiagnosticReport.extension",
+        "sliceName": "genomic-study",
+        "definition": "TBC. Only relevant for structured genomic reports (included in the Genomic Report Profile in the Genomics Report IG). Reference to Procedure resources indicating the analyses performed as part the genomic test order."
+      },
+      {
+        "id": "DiagnosticReport.extension:workflow-relatedArtifact",
+        "path": "DiagnosticReport.extension",
+        "sliceName": "workflow-relatedArtifact",
+        "definition": "TBC. Only relevant for structured genomic reports (included in Genomic Report Profile in the Genomics Report IG). A reference to the guidelines or other knowledge artifacts which were used to guide interpretation or recommended actions included within this DiagnosticReport.\r\nIf entries constitute published papers, they SHOULD be referenced using a known citation style, e.g. Vancouver/Harvard. Alternatively for online texts, these MAY be referenced via URL only.\r\n\r\nA fixed value of 'citation' is expected for the type element, though this recommendation is pending further use cases."
+      },
+      {
+        "id": "DiagnosticReport.extension:workflow-relatedArtifact.value[x].type",
+        "path": "DiagnosticReport.extension.value[x].type",
+        "fixedCode": "citation"
+      },
+      {
+        "id": "DiagnosticReport.extension:diagnosticReportCompositionR5",
+        "path": "DiagnosticReport.extension",
+        "sliceName": "diagnosticReportCompositionR5",
+        "definition": "TBC. Only relevant for EU Lab aligned reports (included in HL7 EU Laboratory Report: DiagnosticReport Profile). A reference to the Composition which wraps this report for data sharing.",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/5.0/StructureDefinition/extension-DiagnosticReport.composition"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "DiagnosticReport.identifier",
+        "path": "DiagnosticReport.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.identifier:identifierGMSReport",
+        "path": "DiagnosticReport.identifier",
+        "sliceName": "identifierGMSReport",
+        "max": "1"
+      },
+      {
+        "id": "DiagnosticReport.identifier:identifierGMSReport.use",
+        "path": "DiagnosticReport.identifier.use",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.identifier:identifierGMSReport.type",
+        "path": "DiagnosticReport.identifier.type",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.identifier:identifierGMSReport.system",
+        "path": "DiagnosticReport.identifier.system",
+        "min": 1,
+        "fixedUri": "https://fhir.nhs.uk/Id/GMSReport"
+      },
+      {
+        "id": "DiagnosticReport.identifier:identifierGMSReport.value",
+        "path": "DiagnosticReport.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.identifier:identifierGMSReport.period",
+        "path": "DiagnosticReport.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.identifier:identifierGMSReport.assigner",
+        "path": "DiagnosticReport.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.identifier:localIdentifier",
+        "path": "DiagnosticReport.identifier",
+        "sliceName": "localIdentifier"
+      },
+      {
+        "id": "DiagnosticReport.identifier:localIdentifier.system",
+        "path": "DiagnosticReport.identifier.system",
+        "min": 1,
+        "fixedUri": "https://fhir.nhs.uk/local-identifier/diagnosticreport"
+      },
+      {
+        "id": "DiagnosticReport.identifier:localIdentifier.value",
+        "path": "DiagnosticReport.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.identifier:localIdentifier.assigner",
+        "path": "DiagnosticReport.identifier.assigner",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.identifier:localIdentifier.assigner.reference",
+        "path": "DiagnosticReport.identifier.assigner.reference",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.identifier:localIdentifier.assigner.identifier",
+        "path": "DiagnosticReport.identifier.assigner.identifier",
+        "min": 1,
+        "fixedIdentifier": {
+          "system": "https://fhir.nhs.uk/Id/ods-organization-code"
+        }
+      },
+      {
+        "id": "DiagnosticReport.basedOn",
+        "path": "DiagnosticReport.basedOn",
+        "definition": "SHOULD reference the originating ServiceRequest if this is an instance of a genomic diagnostic report resulting from a GMS test order.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/CarePlan",
+              "http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation",
+              "http://hl7.org/fhir/StructureDefinition/MedicationRequest",
+              "http://hl7.org/fhir/StructureDefinition/NutritionOrder",
+              "http://hl7.org/fhir/StructureDefinition/ServiceRequest"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.status",
+        "path": "DiagnosticReport.status",
+        "definition": "SHALL use base HL7 codes for DiagnosticReport.status. A DiagnosticReport SHOULD only be marked as final if the report is complete and verified by an authorised person."
+      },
+      {
+        "id": "DiagnosticReport.category",
+        "path": "DiagnosticReport.category",
+        "slicing": {
+          "rules": "open"
+        },
+        "definition": "Potentially multiple categories to specify the specialty the report is relevant for. Different codings are expected by the Genomic Report and EU Lab profiles."
+      },
+      {
+        "id": "DiagnosticReport.category:GeneticsSnomedCT",
+        "path": "DiagnosticReport.category",
+        "sliceName": "GeneticsSnomedCT"
+      },
+      {
+        "id": "DiagnosticReport.category:GeneticsSnomedCT.coding",
+        "path": "DiagnosticReport.category.coding",
+        "patternCoding": {
+          "system": "http://snomed.info/sct",
+          "code": "1236877003",
+          "display": "Genetic pathology"
+        }
+      },
+      {
+        "id": "DiagnosticReport.code",
+        "path": "DiagnosticReport.code",
+        "definition": "SHOULD use a record artifact concept from SNOMED CT where an appropriate code exists, else text is preferred to indicate the document type."
+      },
+      {
+        "id": "DiagnosticReport.code.coding",
+        "path": "DiagnosticReport.code.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "DiagnosticReport.code.coding:codingSnomedCT",
+        "path": "DiagnosticReport.code.coding",
+        "sliceName": "codingSnomedCT",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://fhir.hl7.org.uk/ValueSet/UKCore-ReportCode"
+        }
+      },
+      {
+        "id": "DiagnosticReport.subject",
+        "path": "DiagnosticReport.subject",
+        "definition": "SHALL be present. Reference to the associated Patient. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient",
+              "http://hl7.org/fhir/StructureDefinition/Group",
+              "http://hl7.org/fhir/StructureDefinition/Device",
+              "http://hl7.org/fhir/StructureDefinition/Location"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.issued",
+        "path": "DiagnosticReport.issued",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.performer",
+        "path": "DiagnosticReport.performer",
+        "definition": "SHOULD reference the organization responsible for the testing, preferably by ODS code.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+              "http://hl7.org/fhir/StructureDefinition/Organization",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.performer.reference",
+        "path": "DiagnosticReport.performer.reference",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.performer.identifier",
+        "path": "DiagnosticReport.performer.identifier",
+        "min": 1
+      },
+      {
+        "id": "DiagnosticReport.performer.identifier.system",
+        "path": "DiagnosticReport.performer.identifier.system",
+        "fixedUri": "https://fhir.nhs.uk/Id/ods-organisation-code"
+      },
+      {
+        "id": "DiagnosticReport.resultsInterpreter",
+        "path": "DiagnosticReport.resultsInterpreter",
+        "definition": "SHOULD reference the person responsible for interpreting the raw results, preferably by a recognised NHS identifier, such as SDS code.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
+              "http://hl7.org/fhir/StructureDefinition/Organization",
+              "http://hl7.org/fhir/StructureDefinition/CareTeam"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.specimen",
+        "path": "DiagnosticReport.specimen",
+        "definition": "SHOULD reference the specimen used during testing to generate the report, if the document is a Genomic report.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Specimen"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.result",
+        "path": "DiagnosticReport.result",
+        "definition": "Raw results included within the report, to aid interpretation. These SHOULD take the form of Observation references, if providing a structured report."
+      },
+      {
+        "id": "DiagnosticReport.imagingStudy",
+        "path": "DiagnosticReport.imagingStudy",
+        "max": "0"
+      },
+      {
+        "id": "DiagnosticReport.media",
+        "path": "DiagnosticReport.media",
+        "definition": "TBC. Only relevant for structured genomic reports. Uses the extension:alternate-reference extension to reference DocumentReference resources pointing to the Genomic Data Files used as the basis for the report. Usage of this field over extension:supporting-info is pending further investigation."
+      },
+      {
+        "id": "DiagnosticReport.media.link.extension:alternateReference",
+        "path": "DiagnosticReport.media.link.extension",
+        "sliceName": "alternateReference",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/alternate-reference"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "DiagnosticReport.media.link.extension:alternateReference.value[x]",
+        "path": "DiagnosticReport.media.link.extension.value[x]",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DocumentReference-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Resource"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticReport.conclusionCode",
+        "path": "DiagnosticReport.conclusionCode",
+        "definition": "If possible, unstructured reports wrapped within DiagnosticReports, SHOULD contain a conclusionCode element indicating the coded finding from the report, to aid analytics."
+      },
+      {
+        "id": "DiagnosticReport.presentedForm",
+        "path": "DiagnosticReport.presentedForm",
+        "definition": "Genomic reports SHALL include a presentedForm element either referencing the location of the PDF report (located and accessible on either the source/client system or via NRL using appropriate authentication) or include the PDF report as a base64 encoded attachment within the message payload.\r\nNote: this guidance may change in the future as work on Structured Reporting matures",
+        "min": 1
+      }
+    ]
+  }
+}

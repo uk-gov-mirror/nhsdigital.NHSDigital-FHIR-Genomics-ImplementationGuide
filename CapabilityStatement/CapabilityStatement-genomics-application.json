@@ -64,7 +64,7 @@
    "resource": [
     {
      "type": "AuditEvent",
-     "profile": "http://hl7.org/fhir/StructureDefinition/AuditEvent",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-AuditEvent-GenomicsPARS",
      "documentation": "For searching recorded AuditEvents",
      "interaction": [
       {
@@ -103,7 +103,7 @@
     },
     {
      "type": "Bundle",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Bundle",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Bundle-Genomics",
      "documentation": "For posting FHIR transaction bundles (http://hl7.org/fhir/R4B/http.html#transaction) to the server.",
      "interaction": [
       {
@@ -588,7 +588,7 @@
     },
     {
      "type": "Task",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Task",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Task-Genomics",
      "documentation": "Endpoints for interacting with Task resources",
      "interaction": [
       {
@@ -678,7 +678,7 @@
     },
     {
      "type": "ServiceRequest",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-ServiceRequest",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
      "documentation": "Endpoints for interacting with ServiceRequest resources.",
      "interaction": [
       {
@@ -783,7 +783,7 @@
     },
     {
      "type": "PractitionerRole",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
      "documentation": "Endpoints for interacting with PractitionerRole resources",
      "interaction": [
       {
@@ -956,7 +956,7 @@
     },
     {
      "type": "DiagnosticReport",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-DiagnosticReport",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
      "documentation": "Endpoints for interacting with DiagnosticReport resources",
      "interaction": [
       {
@@ -1050,7 +1050,7 @@
     },
     {
      "type": "FamilyMemberHistory",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-FamilyMemberHistory",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-FamilyMemberHistory-Genomics",
      "documentation": "Endpoints for interacting with FamilyMemberHistory resources",
      "interaction": [
       {
@@ -1117,7 +1117,7 @@
     },
     {
      "type": "Observation",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Observation",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Observation-GenomicsLab",
      "documentation": "Endpoints for interacting with Observation resources",
      "interaction": [
       {
@@ -1208,7 +1208,7 @@
     },
     {
      "type": "Patient",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Patient",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
      "documentation": "Endpoints for interacting with Patient resources",
      "interaction": [
       {
@@ -1287,7 +1287,7 @@
     },
     {
      "type": "Consent",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Consent",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Consent-GenomicsPCF",
      "documentation": "Endpoints for interacting with Consent resources",
      "interaction": [
       {
@@ -1358,7 +1358,7 @@
     },
     {
      "type": "Condition",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Condition",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-GenomicsmCODE",
      "documentation": "Endpoints for interacting with Condition resources",
      "interaction": [
       {
@@ -1445,7 +1445,7 @@
     },
     {
      "type": "RelatedPerson",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-RelatedPerson",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RelatedPerson-Genomics",
      "documentation": "Endpoints for interacting with RelatedPerson resources",
      "interaction": [
       {
@@ -1492,7 +1492,7 @@
     },
     {
      "type": "Specimen",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Specimen",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
      "documentation": "Endpoints for interacting with Specimen resources",
      "interaction": [
       {
@@ -1709,7 +1709,7 @@
     },
     {
      "type": "BodyStructure",
-     "profile": "http://hl7.org/fhir/StructureDefinition/BodyStructure",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-BodyStructure-GenomicsmCODE",
      "documentation": "Endpoints for interacting with BodyStructure resources",
      "interaction": [
       {
@@ -1764,7 +1764,7 @@
     },
     {
      "type": "Provenance",
-     "profile": "http://hl7.org/fhir/StructureDefinition/Provenance",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Provenance-Genomics",
      "documentation": "For searching stored Provenance resources",
      "interaction": [
       {
@@ -1795,7 +1795,7 @@
     },
     {
      "type": "DocumentReference",
-     "profile": "http://hl7.org/fhir/StructureDefinition/DocumentReference",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DocumentReference-GenomicDataFile",
      "documentation": "Endpoints for interacting with DocumentReference resources",
      "interaction": [
       {
@@ -1842,7 +1842,7 @@
     },
     {
      "type": "Composition",
-     "profile": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Composition",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Composition-GenomicsEULabReport",
      "documentation": "For validation of Composition resources and allowing searches via chaining from the Bundle endpoint",
      "interaction": [
       {
@@ -1870,7 +1870,7 @@
     },
     {
      "type": "RequestGroup",
-     "profile": "http://hl7.org/fhir/StructureDefinition/RequestGroup",
+     "profile": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RelatedPerson-Genomics",
      "documentation": "For searching group/family test request.",
      "interaction": [
       {

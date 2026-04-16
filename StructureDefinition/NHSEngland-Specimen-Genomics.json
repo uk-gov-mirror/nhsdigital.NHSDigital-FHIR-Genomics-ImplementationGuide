@@ -1,0 +1,326 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Specimen-Genomics",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
+  "version": "0.3.0",
+  "name": "NHSEngland_Specimen_Genomics",
+  "title": "NHSEngland Specimen Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core FHIR resource [Specimen](https://fhir.hl7.org.uk/StructureDefinition/UKCore-Specimen).",
+  "purpose": "Used to capture information on Samples which will undergo or have undergone processing for genomic testing.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Specimen",
+  "baseDefinition": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Specimen",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Specimen.extension:sampleCategory",
+        "path": "Specimen.extension",
+        "sliceName": "sampleCategory",
+        "definition": "Allows the categorisation of a sample into either tumour or germline. Required for WGS Cancer Testing, though not currently part of the Order Management MDS. Additional terms may be added upon review though the valueCodeableConcept.text field MAY be used as a free text representation if needed."
+      },
+      {
+        "id": "Specimen.identifier",
+        "path": "Specimen.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        },
+        "definition": "Multiple identifiers MAY be assigned to a sample as it travels between labs. Each lab SHOULD append their local identifier to the identifier array if needed, ensuring either the system or assigner, is able to disambiguate any identifiers from possibly overlapping numbers from other organizations. Assigner is preferred in this case (see identifier example on the UKCore-Patient page for further guidance)\r\nNote: accessionIdentifier is unused by the Genomic Medicine Service to facilitate movement of samples across organizational boundaries.",
+        "min": 1
+      },
+      {
+        "id": "Specimen.identifier.assigner",
+        "path": "Specimen.identifier.assigner",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.identifier:identifierGMSSpecimen",
+        "path": "Specimen.identifier",
+        "sliceName": "identifierGMSSpecimen",
+        "max": "1"
+      },
+      {
+        "id": "Specimen.identifier:identifierGMSSpecimen.use",
+        "path": "Specimen.identifier.use",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.identifier:identifierGMSSpecimen.type",
+        "path": "Specimen.identifier.type",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.identifier:identifierGMSSpecimen.system",
+        "path": "Specimen.identifier.system",
+        "min": 1,
+        "fixedUri": "https://fhir.nhs.uk/Id/GMSSpecimen"
+      },
+      {
+        "id": "Specimen.identifier:identifierGMSSpecimen.value",
+        "path": "Specimen.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Specimen.identifier:identifierGMSSpecimen.period",
+        "path": "Specimen.identifier.period",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.identifier:identifierGMSSpecimen.assigner",
+        "path": "Specimen.identifier.assigner",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.identifier:localIdentifier",
+        "path": "Specimen.identifier",
+        "sliceName": "localIdentifier"
+      },
+      {
+        "id": "Specimen.identifier:localIdentifier.system",
+        "path": "Specimen.identifier.system",
+        "min": 1,
+        "fixedUri": "https://fhir.nhs.uk/local-identifier/specimen"
+      },
+      {
+        "id": "Specimen.identifier:localIdentifier.value",
+        "path": "Specimen.identifier.value",
+        "min": 1
+      },
+      {
+        "id": "Specimen.identifier:localIdentifier.assigner",
+        "path": "Specimen.identifier.assigner",
+        "min": 1
+      },
+      {
+        "id": "Specimen.identifier:localIdentifier.assigner.reference",
+        "path": "Specimen.identifier.assigner.reference",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.identifier:localIdentifier.assigner.identifier",
+        "path": "Specimen.identifier.assigner.identifier",
+        "min": 1,
+        "fixedIdentifier": {
+          "system": "https://fhir.nhs.uk/Id/ods-organization-code"
+        }
+      },
+      {
+        "id": "Specimen.accessionIdentifier",
+        "path": "Specimen.accessionIdentifier",
+        "max": "0"
+      },
+      {
+        "id": "Specimen.status",
+        "path": "Specimen.status",
+        "definition": "If a Specimen has not been collected, the status SHOULD be marked as 'unavailable'. If the quality of the Specimen is such that it cannot be processed, the status SHOULD be 'unsatisfactory' (this is equivalent to a QC status of Failed). If the Specimen passes quality control, the status SHOULD be set as 'available'",
+        "min": 1
+      },
+      {
+        "id": "Specimen.type",
+        "path": "Specimen.type",
+        "definition": "The sample type, SNOMED CT preferred. Used to differentiate between raw and extracted (DNA) samples.\r\nConceptMaps for the allowed values for primary (raw) and final (extracted DNA) samples upon release of MDSv1.04, to aid identification of whether a sample is primary vs. final",
+        "min": 1
+      },
+      {
+        "id": "Specimen.subject",
+        "path": "Specimen.subject",
+        "definition": "SHALL be provided. This SHOULD be a reference to the Patient resource or the identifier, NHS number, for the patient.\r\nSamples collected from a Fetus SHOULD reference a Patient resource for the Fetus. This should then be linked to relevant maternal/paternal resources through the RelatedPerson resource. Further information can be found on the Fetus Management clinical scenario. It is not envisaged that samples would need to be linked to more than one person e.g. both fetus and mother, though this assumption will be tested within the Alpha phase of the Genomic Medicine Service.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.receivedTime",
+        "path": "Specimen.receivedTime",
+        "definition": "SHOULD be updated upon receipt at a destination lab"
+      },
+      {
+        "id": "Specimen.parent",
+        "path": "Specimen.parent",
+        "definition": "If a sample has been split into multiple parts, such as DNA being extracted from a primary sample, each SHOULD be represented using an additional Specimen resource, referencing the parent sample through the parent element.\r\nThe central Order Management broker will only create Tasks for Specimen resources which do not have a parent element, i.e. primary samples. If required, clients can create Tasks for processing of derivative samples manually.\r\n\r\nMAY also be used to record the Block identifier for FFPE/Tissue samples, using the reference.identifier element, where a reference to a Specimen resource is not required.",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.request",
+        "path": "Specimen.request",
+        "definition": "SHALL be provided. This SHOULD be a reference to the request which initiated collection of the sample. SHALL NOT be updated if the sample is used for another test e.g. for re-analysis. In the case that a Specimen needs to be processed as part of a new request, e.g. using a sample in storage, the ServiceRequest SHALL reference the pre-existing sample via ServiceRequest.specimen.",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.collection",
+        "path": "Specimen.collection",
+        "definition": "Additional information which can be collected about the circumstances under which as sample was collected, if relevant. This include extensions for specialHandling of the sample, e.g. due to high risk of infection, as well as an extension to bodySite to extend the coding to a BodyStructure reference, for more detailed collection of structural information e.g. where tumour morphology and topography need to be collected (only required where morphology and topography are required.\r\nWhere the collector is an Organization, or where the individual is not known, ODS codes MAY be used as identifiers in place of SDS-User-IDs. However, if referencing a resource, the PractitionerRole resource SHOULD still be referenced. In this case the PractitionerRole.identifier and PractitionerRole.practitioner reference would not be filled, leaving only the reference to an Organization from PractitionerRole.organization."
+      },
+      {
+        "id": "Specimen.collection.extension:specialHandling",
+        "path": "Specimen.collection.extension",
+        "sliceName": "specialHandling",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/genomics-specimen-collection-specialhandling"
+        }
+      },
+      {
+        "id": "Specimen.collection.collector",
+        "path": "Specimen.collection.collector",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.collection.collected[x]",
+        "path": "Specimen.collection.collected[x]",
+        "min": 1
+      },
+      {
+        "id": "Specimen.collection.quantity",
+        "path": "Specimen.collection.quantity",
+        "definition": "The Specimen.collection.quantity is the amount of the sample collected at collection time. This quantity does not change as the sample is processed.\r\n\r\nThe Specimen.container.specimenQuantity is the amount of sample remaining in a container, this is equivalent to GEL 1001 banked volume. This value should be updated as the specimen is used.\r\n\r\nIf a specimen is split, additional specimen resources SHOULD be created (referencing the parent specimen), with individual container.specimenQuantity values."
+      },
+      {
+        "id": "Specimen.collection.bodySite.extension:bodyStructureReference",
+        "path": "Specimen.collection.bodySite.extension",
+        "sliceName": "bodyStructureReference",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/bodySite"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Specimen.processing",
+        "path": "Specimen.processing",
+        "definition": "SHOULD be updated if processing occurs on the sample which affects later use, e.g. additives added"
+      },
+      {
+        "id": "Specimen.processing.procedure.coding",
+        "path": "Specimen.processing.procedure.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "system"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Specimen.processing.procedure.coding:codingSnomedCT",
+        "path": "Specimen.processing.procedure.coding",
+        "sliceName": "codingSnomedCT",
+        "definition": "codes from https://fhir.nhs.uk/ConceptMap/genomics-samplepreparation"
+      },
+      {
+        "id": "Specimen.processing.procedure.coding:codingSnomedCT.system",
+        "path": "Specimen.processing.procedure.coding.system",
+        "fixedUri": "http://snomed.info/sct"
+      },
+      {
+        "id": "Specimen.container",
+        "path": "Specimen.container",
+        "definition": "The UK Core STU3 version of Specimen backports the R5 changes to the container BackboneElement to support capturing of storage location for a sample (through `container.location`) and recursive capture of device identifiers (e.g. tube, well, rack, freezer through `container.device`).\r\nThe container.identifier should match the identifier associated with the barcode for the tube/collection device. This can be searched using the container-id SearchParameter.\r\n\r\nAdditional examples/guidance will be provided within this IG once use of the fields has been appropriately tested.\r\n\r\nSample tracking information SHOULD be added to Tasks acting on Specimen resources, e.g. Tasks marked SamplePreparation or SampleProcessing, on either the output or input elements. This information MAY include consignment number, destination, date sent etc.\r\n\r\nIf known, the container type SHOULD be populated, using the example bound ValueSet, in SNOMED CT. If an appropraite code cannot be found, the specimen container type should be populated using free text, in Specimen.container.type.text. Additional container elements, such as capacity or specimenQuantity MAY be populated if known.",
+        "max": "1"
+      },
+      {
+        "id": "Specimen.container.extension:specimenContainerLocationR5",
+        "path": "Specimen.container.extension",
+        "sliceName": "specimenContainerLocationR5",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/5.0/StructureDefinition/extension-Specimen.container.location"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Specimen.condition",
+        "path": "Specimen.condition",
+        "definition": "Used to record the condition of a specimen. Within Genomics, SHOULD be used to record the fixed/frozen state, using the UK Core bound ValueSet.",
+        "max": "1"
+      }
+    ]
+  }
+}

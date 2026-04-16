@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "Extension-GenomicTest-ParticipantCount",
   "url": "https://fhir.nhs.uk/England/StructureDefinition/Extension-GenomicTest-ParticipantCount",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "name": "ExtensionGenomicTestParticipantCount",
   "title": "Extension Genomic Test ParticipantCount",
-  "status": "draft",
-  "date": "2026-03-26",
+  "status": "active",
+  "date": "2026-04-16",
   "publisher": "NHS England",
   "contact": [
     {

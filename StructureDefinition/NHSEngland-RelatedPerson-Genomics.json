@@ -1,0 +1,76 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-RelatedPerson-Genomics",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RelatedPerson-Genomics",
+  "version": "0.3.0",
+  "name": "NHSEngland_RelatedPerson_Genomics",
+  "title": "NHSEngland RelatedPerson Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core FHIR resource [RelatedPerson](https://fhir.hl7.org.uk/StructureDefinition/UKCore-RelatedPerson).",
+  "purpose": "Used for linking Patients with relatives, both for capturing pedigree and family history as well as in the case of proband and consultand within duo and trio testing, where relatives are active test participants.\r\n\r\nFor instances where clinical/demographic information for the related person are required and they are not included within testing, a Patient resource for the related person SHOULD be included, with the Patient.link field referencing the RelatedPerson resource for the same individual. Elements duplicated across both the Patient and RelatedPerson for the same individual SHOULD in this case be captured within the Patient resource only. The RelatedPerson resource then references the proband Patient resource through the RelatedPerson.patient field.\r\n\r\nFor instances where demographic information is not required, e.g. where details regarding clinical pedigree only are required, and the relative if not part of testing, the UKCore-FamilyMemberHistory resource SHOULD be used instead.\r\n\r\nFor Duo/Trio scenarios, RelatedPerson resources should be added to the supportingInfo field for the Consultand request, with links from the related person following the same pattern as above.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "RelatedPerson",
+  "baseDefinition": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-RelatedPerson",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "RelatedPerson.identifier",
+        "path": "RelatedPerson.identifier",
+        "definition": "SHALL be provided. This SHOULD be NHS number or local identifier (if NHS number is unavailable e.g. for non UK residents) for the source of the relationship. This can be visualised using the nomenclature:\r\n{Source (identifier)} is the {Relationship type (relationship)} of {Target (patient)}\r\n'Ryanne Boulder' is the 'natural mother' of 'Fetus of Ryanne Boulder'\r\nIn this case the Ryanne Boulder's identifier should be used for the RelatedPerson.identifier.\r\n\r\nIf a local identifier is used, an assigner SHALL be provided. The RelatedPerson.identifier field SHALL match the identifier used for a FamilyMemberHistory or Patient resource if these resources are about the same person.\r\n\r\nNOTE: As a single individual MAY be related to a number of Patients the identifier used will not be unique across RelatedPerson resources. As such, both the identifier and patient elements SHOULD be used in conjunction to uniquely identify a relationship",
+        "min": 1
+      },
+      {
+        "id": "RelatedPerson.patient",
+        "path": "RelatedPerson.patient",
+        "definition": "SHALL be provided. This SHOULD be a reference to the Patient resource and/or the identifier, e.g. NHS number, for the patient constituting the target of the relationship. This can be visualised using the nomenclature:\r\n{Source (identifier)} is the {Relationship type (relationship)} of {Target (patient)}\r\n'Ryanne Boulder' is the 'natural mother' of 'Fetus of Ryanne Boulder'\r\n\r\nIn this case the fetal identifier should be used in the patient element.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RelatedPerson.relationship",
+        "path": "RelatedPerson.relationship",
+        "definition": "SHOULD use the UK Core bound ValueSet and SHOULD be present in all instances of RelatedPerson wherever possible.",
+        "min": 1
+      },
+      {
+        "id": "RelatedPerson.photo",
+        "path": "RelatedPerson.photo",
+        "max": "0"
+      },
+      {
+        "id": "RelatedPerson.period",
+        "path": "RelatedPerson.period",
+        "max": "0"
+      }
+    ]
+  }
+}

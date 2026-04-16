@@ -1,0 +1,299 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Task-Genomics",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Task-Genomics",
+  "version": "0.3.0",
+  "name": "NHSEngland_Task_Genomics",
+  "title": "NHSEngland Task Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the International FHIR resource [Task](http://hl7.org/fhir/StructureDefinition/Task).",
+  "purpose": "The core workflow resource for managing processing of a ServiceRequest from order through to delivery of a DiagnosticReport and completion is Task. Task tracking is a core requirement of the central Genomic Medicine Service.\r\n\r\nEach ServiceRequest submitted will instantiate a series of High Level Tasks, which MAY be assigned to different organizations for managing the test request e.g. Sample Processing, Interpretation, Reporting etc. The full list of possible Task types/codes, their associated business statuses, and status reasons is pending internal review.\r\n\r\nTasks will be automatically created by the central broker but updates to statuses and attachment of input/output resources is the responsibility of the assigned organizations.\r\n\r\nIn most cases, the full library of 10 tasks, as defined within Genomic-Task-Code, will be 'spun-up', on submission of a Test order. Tasks related to Samples MAY be duplicated per Sample to allow tracking of work related to individual Samples as part of the same test request, or equally, MAY be omitted as in the case of Re-Analysis or Re-Interpretation where data from an existing sample is used, eliminating the need for additional wet-work. For the full cardinality breakdown see further guidance for the Task.code element.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Task",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Task",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Task.basedOn",
+        "path": "Task.basedOn",
+        "definition": "This element will not be used within the Genomic Medicine Service. The ServiceRequest a Task is seeking to fulfill SHALL be referenced through the `focus` element. Specimen resources being acted upon by tasks related to specimen prep/processing SHOULD be referenced through the `Task.input` element.",
+        "max": "0"
+      },
+      {
+        "id": "Task.basedOn.identifier.assigner",
+        "path": "Task.basedOn.identifier.assigner",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.partOf",
+        "path": "Task.partOf",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Task-Genomics"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.partOf.identifier.assigner",
+        "path": "Task.partOf.identifier.assigner",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization",
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.status",
+        "path": "Task.status",
+        "definition": "Initially, automatically populated by the central service upon instantiation. Tasks will be first marked as 'draft' until their prerequisites have been satisfied, after which they will be marked as 'requested' until accepted/claimed by an organization. Upon acceptance, the owning organization is responsible for updating the status up until completion (or if the owning organization is not integrated into the GMS, the organization who has referred the task to the unintegrated org).\r\nIf a ServiceRequest is cancelled, any Tasks which have not already moved into in-progress SHALL be moved into the cancelled state, any in-progress Tasks will require lab processes to manage closure of the Task and appropriate reimbursement. For a full list of possible automatic cascading of ServiceRequest.status to Task.status please see additional guidance on the status element on the UKCore-ServiceRequest profile page.\r\n\r\nIt is not expected that Task statuses will propagate up to the ServiceRequest status, though certain task failure types may require revokation of the authorising request (pending investigation).\r\n\r\nFor the full list of expected Task statuses in use by the GMS, please refer to the table below. For the allowed Task status transitions, please see the FHIR R4 Task state machine model."
+      },
+      {
+        "id": "Task.statusReason",
+        "path": "Task.statusReason",
+        "definition": "Reasons why a Task has been marked as on-hold, cancelled etc. SHOULD use the Genomic-Task-StatusReason CodeSystem. NOTE: The list of appropriate statusReasons is pending finalization.\r\nIf a code from the linked CodeSystem is not applicable, the code of other SHOULD be used, with a free text reason captured within Task.statusReason.text.",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/task-statusReason-genomics"
+        }
+      },
+      {
+        "id": "Task.businessStatus",
+        "path": "Task.businessStatus",
+        "short": "E.g. \"Specimen Received\", \"Analysis In Progress\"",
+        "definition": "Genomic specific business statuses for capturing more granular information as part of processing the task. SHOULD use the Genomic-Business-Status CodeSystem. NOTE: The list of appropriate buinessStatuses is pending finalization. Mapping business statuses to the high level container Tasks and statuses is still ongoing.\r\nIf a code from the linked CodeSystem is not applicable, the code of other SHOULD be used, with a free text status captured within Task.businessStatus.text.",
+        "binding": {
+          "strength": "preferred",
+          "description": "The domain-specific business-contextual sub-state of the task.  ValueSet specific for Genomics, subject to change.",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/genomics-business-status"
+        }
+      },
+      {
+        "id": "Task.code",
+        "path": "Task.code",
+        "definition": "High level coding for the Task, matches the NGTP stages for genomic test processing. Clients SHOULD use the Genomic-Task-Code CodeSystem. NOTE: The list of appropriate codes is pending finalization.\r\nThe currently allowed code list and their definition is provided in the table below. The table also provides the cardinality of each Task per ServiceRequest or Sample attached to the request as generated by the central broker on submission of a test request. Note: the cardinalities listed reflect the number of concurrent active tasks per service request at any one time, there may be cases where additional Tasks need to be spun up manually, e.g. on failure such as when a new sample needs to be processed after a previous sample fails Quality Control, or when further preparation is required. This cardinality supports the use cases for both requests with multiple participants, e.g. Duo/Trio, and multiple samples per participant e.g. Cancer testing.",
+        "min": 1,
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/task-code-genomics"
+        }
+      },
+      {
+        "id": "Task.description",
+        "path": "Task.description",
+        "max": "0"
+      },
+      {
+        "id": "Task.focus",
+        "path": "Task.focus",
+        "definition": "The ServiceRequest the Task is fulfilling. Autopopulated by the central service.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.for",
+        "path": "Task.for",
+        "definition": "A reference to the Patient resource or the identifier, NHS number, for the patient for whom the Task is for. Autopopulated by the central service if the Task is automatically generated.\r\nIf a Task is created by client system or user interaction, for SHALL be populated with a reference to the associated Patient. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Resource"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.encounter",
+        "path": "Task.encounter",
+        "max": "0"
+      },
+      {
+        "id": "Task.executionPeriod",
+        "path": "Task.executionPeriod",
+        "definition": "MAY be used to capture start and end DateTimes associated with execution of a Task. It is expected the start time will be populated as a Task is moved to in-progress and the end time will be populated as a Task is marked as completed. Usage of this field will be investigated during the Alpha phase of the Genomic Order Management project as timelines for task execution can also be derived from the AuditEvents recorded as Tasks are updated."
+      },
+      {
+        "id": "Task.authoredOn",
+        "path": "Task.authoredOn",
+        "definition": "Autopopulated by the central service on creation of the Task.",
+        "min": 1
+      },
+      {
+        "id": "Task.lastModified",
+        "path": "Task.lastModified",
+        "definition": "Time at which a change to the task was made, e.g. status updated. SHALL be updated on change."
+      },
+      {
+        "id": "Task.requester",
+        "path": "Task.requester",
+        "definition": "The original requester of the ServiceRequest the Task is fulfilling. Autopopulated by the central service.",
+        "min": 1,
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.performerType",
+        "path": "Task.performerType",
+        "max": "0"
+      },
+      {
+        "id": "Task.owner",
+        "path": "Task.owner",
+        "definition": "Autopopulated by the central service if a performer is assigned at Test submission. By default, this will the Home GLH for the submitting organization, unless an alternative is specified. The Home GLH/original performer (managing entity) SHOULD remain the owner for the Process Genomic Test Task, throughout the test order-fulfillment process.\r\nThis field can be updated by the organization claiming the task (though this could also be autopopulated if automated per test routing tables are integrated into the central service functionality). Owner SHOULD be populated using organization ODS code references.\r\n\r\nThe responsibility for routing/reassigning ownership of Tasks lies with the current owner following the transfers of responsibility as per the National Genomic Testing Process (NGTP). The different scenarios for how follow-on routing may be achieved is summarised in the points below:\r\n\r\nIn most cases, by default the test will be routed to the home GLH (or other lab/GLH as dictated by the initial routing table).\r\nThis would mean all Tasks by default would have this organization, e.g. home GLH, as the initial owner, it would then be the responsibility of the GLH to reassign tasks to other organizations, where they 'send away' or commission work.\r\nOnce that work is complete, the send-away organization can choose to reassign the current Task (where another organization needs to conduct work against the same Task before it can be marked as complete)/or assign the follow-on Task (where the current task can be marked as complete) to the next organization, if this is known.\r\nIf the next organization to send work to is unknown, responsibility should lie with the original/previous owner e.g. Home GLH to reassign the task to the next organization that needs to complete work. This should be captured by having the current owner reassign the task back to the GLH (or organization which assigned the task to them) if further work needs to occur within the current task; or the next task in the NGTP moves from the draft state into the requested state (indicating all its prerequisites have been satisfied). The owner of that task, e.g home GLH, then either starts work or assigns this to the relevant organization.\r\nIn further phases, a routing advice service may be provided by NHS England to aid organizations in identifying which organization should be assigned, after completing their work.\r\nTasks assigned to a particular organization SHOULD be searched for using the owner search parameter with the :identifier modifier i.e. [base]/Task?owner:identifier=8J834 or [base]/Task?owner:identifier=https://fhir.nhs.uk/Id/ods-organization-code|8J834",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization"
+            ],
+            "aggregation": [
+              "referenced"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Task.owner.reference",
+        "path": "Task.owner.reference",
+        "max": "0"
+      },
+      {
+        "id": "Task.owner.identifier",
+        "path": "Task.owner.identifier",
+        "min": 1
+      },
+      {
+        "id": "Task.owner.identifier.system",
+        "path": "Task.owner.identifier.system",
+        "fixedUri": "https://fhir.nhs.uk/Id/ods-organisation-code"
+      },
+      {
+        "id": "Task.location",
+        "path": "Task.location",
+        "max": "0"
+      },
+      {
+        "id": "Task.reasonCode",
+        "path": "Task.reasonCode",
+        "max": "0"
+      },
+      {
+        "id": "Task.reasonReference",
+        "path": "Task.reasonReference",
+        "max": "0"
+      },
+      {
+        "id": "Task.insurance",
+        "path": "Task.insurance",
+        "max": "0"
+      },
+      {
+        "id": "Task.note",
+        "path": "Task.note",
+        "definition": "Used for messaging between owner and other orgnizations e.g. during handover of task or requesting information from requesting clinician."
+      },
+      {
+        "id": "Task.relevantHistory",
+        "path": "Task.relevantHistory",
+        "max": "0"
+      },
+      {
+        "id": "Task.restriction",
+        "path": "Task.restriction",
+        "max": "0"
+      },
+      {
+        "id": "Task.input",
+        "path": "Task.input",
+        "definition": "Used to attach inputs to a Task, if relevant. e.g. references to Specimen's which a Sample Processing task is acting on. No CodeSystem exists for this field as of publication but this will be investigated as future work.\r\nSpecimen references SHOULD be added to Tasks acting on Specimen resources, e.g. Tasks marked SamplePreparation or SampleProcessing. This is to clearly disambiguate which specimen a task is acting on, where multiple specimens are necessary for processing the test request."
+      },
+      {
+        "id": "Task.input.type",
+        "path": "Task.input.type",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/AdditionalInfoTypeGenomics"
+        }
+      },
+      {
+        "id": "Task.output",
+        "path": "Task.output",
+        "definition": "Used to attach outputs from a Task, if relevant. e.g. VUS files during processing or a DiagnosticReport upon completion of reporting stage. No CodeSystem exists for this field as of publication but this will be investigated as future work.\r\nSample tracking information SHOULD be added to Tasks acting on Specimen resources, e.g. Tasks marked SamplePreparation or SampleProcessing, on either the output or input elements. This information MAY include consignment number, destination, date sent etc. Further modelling of the types/format expected are pending clinical scenarios."
+      },
+      {
+        "id": "Task.output.type",
+        "path": "Task.output.type",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://fhir.nhs.uk/ValueSet/AdditionalInfoTypeGenomics"
+        }
+      }
+    ]
+  }
+}

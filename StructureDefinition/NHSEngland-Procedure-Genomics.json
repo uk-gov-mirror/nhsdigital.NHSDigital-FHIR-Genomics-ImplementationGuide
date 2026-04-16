@@ -1,0 +1,153 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-Procedure-Genomics",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Procedure-Genomics",
+  "version": "0.3.0",
+  "name": "NHSEngland_Procedure_Genomics",
+  "title": "NHSEngland Procedure Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core FHIR resource [Procedure](https://fhir.hl7.org.uk/StructureDefinition/UKCore-Procedure).",
+  "purpose": "Used for detailing information on procedures the patient has had performed, to aid interpretation of Genomic test results.\r\n\r\nAssertion of an absence of a procedure being performed SHOULD be recorded using an Observation resource, as described in the UKCore-Observation\r\n\r\nAt a minimum, Procedure resources are expected to contain the status, code, subject and performedDateTime, though additional information conforming to the FHIR profile below MAY be included if relevant.\r\n\r\nGenomic Study and Genomic Study Analysis profiles on Procedure MAY also be used as part of structured reporting. ",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "Procedure",
+  "baseDefinition": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Procedure",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Procedure.extension:genomicStudyAnalysisExt",
+        "path": "Procedure.extension",
+        "sliceName": "genomicStudyAnalysisExt",
+        "definition": "From the Genomic Reporting IG Genomic Study profile. Reference to the Genomic Study Analysis resource, detailing the analyses performed as part of genomic test.",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-ext"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Procedure.extension:genomicStudyAnalysisDevice",
+        "path": "Procedure.extension",
+        "sliceName": "genomicStudyAnalysisDevice",
+        "definition": "From the Genomic Reporting IG Genomic Study Analysis profile. Various extensions covering the metadata related to a genomic test, e.g. regions studied, change types tested for etc. For the full list of extensions, please see the linked profile page.\r\n\r\nSpecifically the extension:device element SHOULD be used to record the software/device that generated an observation, where applicable.\r\n\r\nUse of the profile and its extensions is pending further discovery of the data standards required for Genomic Reporting in the UK.",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-study-analysis-device"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "Procedure.status",
+        "path": "Procedure.status",
+        "definition": "Status SHALL use the codes recommended in the base Procedure resource, appropriately tagging procedures as having been completed or in-progress etc. depending on the actual status of the procedure."
+      },
+      {
+        "id": "Procedure.code",
+        "path": "Procedure.code",
+        "definition": "SHALL be present. SNOMED CT coding is preferred, though alternative codings MAY be provided subject to review of the Coding system by the NHS England Genomics Unit.\r\n\r\nFor the Genomic Study profile, expected to be from the Genomic Study Type ValueSet",
+        "min": 1
+      },
+      {
+        "id": "Procedure.code.coding",
+        "path": "Procedure.code.coding",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        }
+      },
+      {
+        "id": "Procedure.code.coding:codingSnomedCT",
+        "path": "Procedure.code.coding",
+        "sliceName": "codingSnomedCT",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "https://fhir.hl7.org.uk/ValueSet/UKCore-ProcedureCode"
+        }
+      },
+      {
+        "id": "Procedure.code.coding:codingGenomicStudyType",
+        "path": "Procedure.code.coding",
+        "sliceName": "codingGenomicStudyType",
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "http://hl7.org/fhir/uv/genomics-reporting/ValueSet/genomic-study-type-vs"
+        }
+      },
+      {
+        "id": "Procedure.subject",
+        "path": "Procedure.subject",
+        "definition": "SHALL be present. Reference to the associated Patient. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS.",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient",
+              "http://hl7.org/fhir/StructureDefinition/Group"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "Procedure.performed[x]",
+        "path": "Procedure.performed[x]",
+        "definition": "performed SHOULD be provided wherever possible, using the appropriate data type, to aid in interpretation of Genomic test results."
+      },
+      {
+        "id": "Procedure.recorder",
+        "path": "Procedure.recorder",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": [
+              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
+              "http://hl7.org/fhir/StructureDefinition/Patient",
+              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
+              "http://hl7.org/fhir/StructureDefinition/Practitioner",
+              "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
+            ],
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

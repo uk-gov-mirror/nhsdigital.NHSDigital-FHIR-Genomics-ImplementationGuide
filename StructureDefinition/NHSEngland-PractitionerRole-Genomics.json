@@ -1,0 +1,133 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "NHSEngland-PractitionerRole-Genomics",
+  "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
+  "version": "0.3.0",
+  "name": "NHSEngland_PractitionerRole_Genomics",
+  "title": "NHSEngland PractitionerRole Genomics",
+  "status": "active",
+  "date": "2026-04-16",
+  "publisher": "NHS England",
+  "contact": [
+    {
+      "name": "NHS England",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "description": "This profile defines the Genomics constraints and extensions on the UK Core FHIR resource [PractitionerRole](https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole).",
+  "purpose": "PractitionerRole resources SHOULD be used where information about both a practitioner and their role within a specific organization is required, e.g. as the ServiceRequest.requestor.\r\n\r\nReferences to Practitioner and Organization resources SHOULD only be made via identifier, rather than appending Practitioner and Organization resources to test order bundles. Issues with referencing via identifier SHOULD be reported to the NHS England Genomics Unit for investigation.",
+  "copyright": "Copyright © 2026+ NHS England Licensed under the Apache License, Version 2.0 (the \\\\\\\"License\\\\\\\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at  http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \\\\\\\"AS IS\\\\\\\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. HL7® FHIR® standard Copyright © 2011+ HL7 The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at  https://www.hl7.org/fhir/license.html.",
+  "fhirVersion": "4.0.1",
+  "kind": "resource",
+  "abstract": false,
+  "type": "PractitionerRole",
+  "baseDefinition": "https://fhir.hl7.org.uk/StructureDefinition/UKCore-PractitionerRole",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "PractitionerRole.identifier",
+        "path": "PractitionerRole.identifier",
+        "definition": "Preferrably the user's SDS Role Profile ID"
+      },
+      {
+        "id": "PractitionerRole.practitioner",
+        "path": "PractitionerRole.practitioner",
+        "definition": "SHALL be present. Users SHOULD reference practitioners using an appropriate naming system as defined within the NHS England IG , this has been copied below for convenience. Display name MAY be included to aid readability and verification of included identifiers.\r\nNote: The SDS User Id is the preferred identifier naming scheme and SHOULD be sourced from NHS Identity (SmartCard), this is also held within the Spine Directory Service LDAP database. Where the SDS User ID cannot be obtained, or is not applicable for the healthcare worker, one of the professional codes MAY be used.",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.practitioner.reference",
+        "path": "PractitionerRole.practitioner.reference",
+        "max": "0"
+      },
+      {
+        "id": "PractitionerRole.practitioner.identifier",
+        "path": "PractitionerRole.practitioner.identifier",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.organization",
+        "path": "PractitionerRole.organization",
+        "definition": "SHALL be present. Users SHOULD reference organizations using an ODS code. Display name MAY be included to aid readability and verification of included identifiers. Requester ODS codes SHOULD use the lowest level site code rather than trust code (most granular code available) where possible, to aid contact retrieval.",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.organization.reference",
+        "path": "PractitionerRole.organization.reference",
+        "max": "0"
+      },
+      {
+        "id": "PractitionerRole.organization.identifier",
+        "path": "PractitionerRole.organization.identifier",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.specialty",
+        "path": "PractitionerRole.specialty",
+        "definition": "The specialty field SHOULD be used to record department for the requesting clinician, issues with the use of this field, including issues with the [bound UK Core ValueSet](https://fhir.hl7.org.uk/CodeSystem/UKCore-PracticeSettingCode) not representing certain departments SHOULD be reported to the NHS England Genomics Unit"
+      },
+      {
+        "id": "PractitionerRole.location",
+        "path": "PractitionerRole.location",
+        "max": "0"
+      },
+      {
+        "id": "PractitionerRole.healthcareService",
+        "path": "PractitionerRole.healthcareService",
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "aggregation": [
+              "referenced",
+              "bundled"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "PractitionerRole.telecom",
+        "path": "PractitionerRole.telecom",
+        "definition": "The telecom field SHOULD be used to record contact details for the practitioner. For central mailboxes, e.g. those used for providing reports back to the requester, these SHOULD be marked with an appropriate 'contactpoint-comment' extension. Additionally, where are there multiple Practitioners involved in providing care, the contact details for each Practitioners for that location (or service) SHOULD be specified.",
+        "min": 1
+      },
+      {
+        "id": "PractitionerRole.telecom.extension:contactPointComment",
+        "path": "PractitionerRole.telecom.extension",
+        "sliceName": "contactPointComment",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/StructureDefinition/contactpoint-comment"
+            ]
+          }
+        ],
+        "isModifier": false
+      },
+      {
+        "id": "PractitionerRole.availableTime",
+        "path": "PractitionerRole.availableTime",
+        "max": "0"
+      },
+      {
+        "id": "PractitionerRole.notAvailable",
+        "path": "PractitionerRole.notAvailable",
+        "max": "0"
+      },
+      {
+        "id": "PractitionerRole.availabilityExceptions",
+        "path": "PractitionerRole.availabilityExceptions",
+        "max": "0"
+      }
+    ]
+  }
+}
