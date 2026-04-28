@@ -25,15 +25,6 @@
   {
    "coding": [
     {
-     "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-GenomeSequencingCategory",
-     "code": "cancer-non-wgs",
-     "display": "Cancer - Non-WGS"
-    }
-   ]
-  },
-  {
-   "coding": [
-    {
      "system": "https://fhir.nhs.uk/CodeSystem/cancer-testing-genomics",
      "code": "diagnostic",
      "display": "Diagnostic"

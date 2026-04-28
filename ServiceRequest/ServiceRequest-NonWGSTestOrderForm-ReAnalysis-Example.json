@@ -26,14 +26,6 @@
   {
    "coding": [
     {
-     "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-GenomeSequencingCategory",
-     "code": "rare-disease-non-wgs"
-    }
-   ]
-  },
-  {
-   "coding": [
-    {
      "system": "https://fhir.nhs.uk/CodeSystem/rare-diseaseTesting-genomics",
      "code": "reanalysis",
      "display": "Re-analysis"
