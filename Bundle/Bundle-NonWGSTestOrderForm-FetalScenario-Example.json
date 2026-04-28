@@ -342,15 +342,6 @@
      {
       "coding": [
        {
-        "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-GenomeSequencingCategory",
-        "code": "rare-disease-non-wgs",
-        "display": "Rare Disease - Non-WGS"
-       }
-      ]
-     },
-     {
-      "coding": [
-       {
         "system": "https://fhir.nhs.uk/CodeSystem/rare-diseaseTesting-genomics",
         "code": "prenatal-diagnosis",
         "display": "Prenatal diagnosis"
@@ -456,15 +447,6 @@
     "status": "active",
     "intent": "order",
     "category": [
-     {
-      "coding": [
-       {
-        "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-GenomeSequencingCategory",
-        "code": "rare-disease-non-wgs",
-        "display": "Rare Disease - Non-WGS"
-       }
-      ]
-     },
      {
       "coding": [
        {
@@ -588,15 +570,6 @@
     "status": "active",
     "intent": "order",
     "category": [
-     {
-      "coding": [
-       {
-        "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-GenomeSequencingCategory",
-        "code": "rare-disease-non-wgs",
-        "display": "Rare Disease - Non-WGS"
-       }
-      ]
-     },
      {
       "coding": [
        {

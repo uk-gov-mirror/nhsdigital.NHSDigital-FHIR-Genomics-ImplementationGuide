@@ -32,15 +32,6 @@
   {
    "coding": [
     {
-     "system": "https://fhir.hl7.org.uk/CodeSystem/UKCore-GenomeSequencingCategory",
-     "code": "cancer-wgs",
-     "display": "Cancer - WGS"
-    }
-   ]
-  },
-  {
-   "coding": [
-    {
      "system": "https://fhir.nhs.uk/CodeSystem/rare-diseaseTesting-genomics",
      "code": "diagnostic",
      "display": "Diagnostic"
