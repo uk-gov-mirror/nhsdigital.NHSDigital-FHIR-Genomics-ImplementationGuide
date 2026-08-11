@@ -42,7 +42,7 @@
  "code": {
   "coding": [
    {
-    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
     "code": "GT1046",
     "display": "Paediatric Tumour Differential Diagnosis - NGS Panel SNV and CNV",
     "extension": [
@@ -69,7 +69,7 @@
   {
    "coding": [
     {
-     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
      "code": "TP550",
      "display": "Paediatric Tumours",
      "extension": [

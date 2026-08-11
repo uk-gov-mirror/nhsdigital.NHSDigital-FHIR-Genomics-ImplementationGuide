@@ -38,7 +38,7 @@
  "code": {
   "coding": [
    {
-    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
     "code": "GT469",
     "display": "High Grade Ovarian Carcinoma WGS",
     "extension": [
@@ -65,7 +65,7 @@
   {
    "coding": [
     {
-     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
      "code": "TP589",
      "display": "Ovarian Carcinoma - Merged",
      "extension": [

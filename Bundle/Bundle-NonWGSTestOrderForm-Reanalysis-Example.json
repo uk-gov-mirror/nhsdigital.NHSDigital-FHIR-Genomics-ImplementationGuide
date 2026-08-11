@@ -253,7 +253,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "GT192",
        "display": "Reanalysis of existing data",
        "extension": [
@@ -280,7 +280,7 @@
      {
       "coding": [
        {
-        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
         "code": "TP459",
         "display": "Paediatric disorders",
         "extension": [
@@ -387,7 +387,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "TP439",
        "display": "Monogenic hearing loss"
       }

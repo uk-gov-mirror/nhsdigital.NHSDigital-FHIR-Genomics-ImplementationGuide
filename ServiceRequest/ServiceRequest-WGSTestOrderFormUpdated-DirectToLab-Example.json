@@ -48,7 +48,7 @@
   {
    "coding": [
     {
-     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
      "code": "TP12",
      "display": "Acutely unwell children with a likely monogenic disorder",
      "extension": [

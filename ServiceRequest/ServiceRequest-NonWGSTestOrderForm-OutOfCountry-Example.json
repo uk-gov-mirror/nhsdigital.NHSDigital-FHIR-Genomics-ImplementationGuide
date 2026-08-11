@@ -38,7 +38,7 @@
  "code": {
   "coding": [
    {
-    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
     "code": "GT1272",
     "display": "ETV6::NTRK3 targeted assay",
     "extension": [
@@ -65,7 +65,7 @@
   {
    "coding": [
     {
-     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
      "code": "TP580",
      "display": "Breast Cancer",
      "extension": [

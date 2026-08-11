@@ -41,7 +41,7 @@
  "code": {
   "coding": [
    {
-    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
     "code": "GT36",
     "display": "Predictive testing for known variant(s) - Targeted variant testing",
     "extension": [
@@ -68,7 +68,7 @@
   {
    "coding": [
     {
-     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
      "code": "TP442",
      "display": "Familial hypercholesterolaemia",
      "extension": [

@@ -36,7 +36,7 @@
  "code": {
   "coding": [
    {
-    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+    "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
     "code": "GT200",
     "display": "Other FISH Targets - ALL",
     "extension": [
@@ -63,7 +63,7 @@
   {
    "coding": [
     {
-     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+     "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
      "code": "TP34",
      "display": "Acute Lymphoblastic Leukaemia - T cell",
      "extension": [

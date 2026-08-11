@@ -236,7 +236,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "GT497",
        "display": "Cystic renal disease - WGS",
        "extension": [
@@ -263,7 +263,7 @@
      {
       "coding": [
        {
-        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
         "code": "TP171",
         "display": "Cystic renal disease",
         "extension": [
@@ -380,7 +380,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "TP439",
        "display": "Monogenic hearing loss"
       }
