@@ -85,13 +85,5 @@
       },
       "display": "anywhere place"
     }
-  ],
-  "link": [
-    {
-      "other": {
-        "reference": "https://api.service.nhs.uk/personal-demographics/FHIR/R4/Patient/9449307946"
-      },
-      "type": "seealso"
-    }
   ]
 }
