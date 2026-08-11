@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-ServiceRequest-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_ServiceRequest_Genomics",
   "title": "NHSEngland ServiceRequest Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-11",
   "publisher": "NHS England",
   "contact": [
     {
@@ -288,7 +288,7 @@
       {
         "id": "ServiceRequest.code.coding:DGTSCode.system",
         "path": "ServiceRequest.code.coding.system",
-        "fixedUri": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService"
+        "fixedUri": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices"
       },
       {
         "id": "ServiceRequest.orderDetail",
@@ -483,7 +483,7 @@
       {
         "id": "ServiceRequest.reasonCode:DGTSTestPackage.coding.system",
         "path": "ServiceRequest.reasonCode.coding.system",
-        "fixedUri": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService"
+        "fixedUri": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices"
       },
       {
         "id": "ServiceRequest.reasonReference",

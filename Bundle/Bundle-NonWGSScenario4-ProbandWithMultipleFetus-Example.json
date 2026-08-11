@@ -181,7 +181,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "GT1133",
        "display": "Common aneuploidy testing",
        "extension": [
@@ -214,7 +214,7 @@
      {
       "coding": [
        {
-        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
         "code": "TP289",
         "display": "Common aneuploidy testing - prenatal",
         "extension": [
@@ -491,7 +491,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "GT1133",
        "display": "Common aneuploidy testing",
        "extension": [
@@ -524,7 +524,7 @@
      {
       "coding": [
        {
-        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
         "code": "TP289",
         "display": "Common aneuploidy testing - prenatal",
         "extension": [
@@ -757,7 +757,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "GT1133",
        "display": "Common aneuploidy testing",
        "extension": [
@@ -784,7 +784,7 @@
      {
       "coding": [
        {
-        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
         "code": "TP289",
         "display": "Common aneuploidy testing - prenatal",
         "extension": [
@@ -906,7 +906,7 @@
     "code": {
      "coding": [
       {
-       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+       "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
        "code": "GT1133",
        "display": "Common aneuploidy testing",
        "extension": [
@@ -933,7 +933,7 @@
      {
       "coding": [
        {
-        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestService",
+        "system": "https://fhir.nhs.uk/CodeSystem/England-DigitalGenomicTestServices",
         "code": "TP289",
         "display": "Common aneuploidy testing - prenatal",
         "extension": [
