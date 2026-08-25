@@ -222,27 +222,16 @@
       {
         "id": "ServiceRequest.category",
         "path": "ServiceRequest.category",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "pattern",
-              "path": "$this"
-            }
-          ],
-          "rules": "open"
-        },
         "definition": "Category SHALL be populated with the reason for the request being ordered e.g. Diagnostic, Carrier, Predictive, Stored DNA etc. The final list of applicable codes which can be selected is still under review, the Genomic-ReasonforTesting ValueSet SHOULD be used for this categorisation.",
-        "min": 1
-      },
-      {
-        "id": "ServiceRequest.category:reasonForTesting",
-        "path": "ServiceRequest.category",
-        "sliceName": "reasonForTesting",
         "min": 1,
-        "binding": {
-          "strength": "required",
-          "valueSet": "https://fhir.nhs.uk/ValueSet/genomics-reasonfortesting"
-        }
+        "constraint": [
+          {
+            "key": "gen-5",
+            "severity": "error",
+            "human": "At least 1 reason for testing SHALL be provided",
+            "expression": "category.coding.memberOf('https://fhir.nhs.uk/ValueSet/Genomic-ReasonForTesting').exists()"
+          }
+        ]
       },
       {
         "id": "ServiceRequest.priority",
@@ -501,9 +490,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-Genomics"
-            ],
             "aggregation": [
               "referenced",
               "bundled"

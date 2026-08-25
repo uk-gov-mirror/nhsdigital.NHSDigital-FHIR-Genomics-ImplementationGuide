@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-DocumentReference-GenomicDataFile",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DocumentReference-GenomicDataFile",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_DocumentReference_GenomicDataFile",
   "title": "NHSEngland DocumentReference GenomicDataFile",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -40,13 +40,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/Group",
-              "http://hl7.org/fhir/StructureDefinition/Device"
-            ],
             "aggregation": [
               "referenced"
             ]

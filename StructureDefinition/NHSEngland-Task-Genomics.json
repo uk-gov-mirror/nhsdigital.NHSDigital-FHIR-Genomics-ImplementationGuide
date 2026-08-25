@@ -149,10 +149,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Resource"
-            ],
             "aggregation": [
               "referenced"
             ]
@@ -209,9 +205,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization"
-            ],
             "aggregation": [
               "referenced"
             ]

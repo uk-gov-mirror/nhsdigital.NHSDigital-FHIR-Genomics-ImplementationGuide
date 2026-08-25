@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Procedure-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Procedure-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Procedure_Genomics",
   "title": "NHSEngland Procedure Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -111,11 +111,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/Group"
-            ],
             "aggregation": [
               "referenced",
               "bundled"
@@ -127,26 +122,6 @@
         "id": "Procedure.performed[x]",
         "path": "Procedure.performed[x]",
         "definition": "performed SHOULD be provided wherever possible, using the appropriate data type, to aid in interpretation of Genomic test results."
-      },
-      {
-        "id": "Procedure.recorder",
-        "path": "Procedure.recorder",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/RelatedPerson",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
       }
     ]
   }
