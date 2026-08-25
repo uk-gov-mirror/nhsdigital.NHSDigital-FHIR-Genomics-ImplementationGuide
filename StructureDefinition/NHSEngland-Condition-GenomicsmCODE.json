@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Condition-GenomicsmCODE",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-GenomicsmCODE",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Condition_GenomicsmCODE",
   "title": "NHSEngland Condition GenomicsmCODE",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -79,7 +79,7 @@
         "path": "Condition.category",
         "sliceName": "ukcoreCategory",
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://fhir.hl7.org.uk/ValueSet/UKCore-ConditionCategory"
         }
       },
@@ -94,8 +94,8 @@
         "slicing": {
           "discriminator": [
             {
-              "type": "pattern",
-              "path": "$this"
+              "type": "value",
+              "path": "system"
             }
           ],
           "rules": "open"

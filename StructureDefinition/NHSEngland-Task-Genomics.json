@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Task-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Task-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Task_Genomics",
   "title": "NHSEngland Task Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -231,7 +231,7 @@
       {
         "id": "Task.owner.identifier.system",
         "path": "Task.owner.identifier.system",
-        "fixedUri": "https://fhir.nhs.uk/Id/ods-organisation-code"
+        "fixedUri": "https://fhir.nhs.uk/Id/ods-organization-code"
       },
       {
         "id": "Task.location",
