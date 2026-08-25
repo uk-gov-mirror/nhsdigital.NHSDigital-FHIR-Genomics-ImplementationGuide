@@ -6,6 +6,7 @@
   "name": "NHSEngland_Procedure_Genomics",
   "title": "NHSEngland Procedure Genomics",
   "status": "active",
+  "experimental": true,
   "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [

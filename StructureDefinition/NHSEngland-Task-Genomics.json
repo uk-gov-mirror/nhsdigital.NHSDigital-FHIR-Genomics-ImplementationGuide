@@ -39,21 +39,6 @@
         "max": "0"
       },
       {
-        "id": "Task.basedOn.identifier.assigner",
-        "path": "Task.basedOn.identifier.assigner",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
-            ],
-            "aggregation": [
-              "referenced"
-            ]
-          }
-        ]
-      },
-      {
         "id": "Task.partOf",
         "path": "Task.partOf",
         "type": [
