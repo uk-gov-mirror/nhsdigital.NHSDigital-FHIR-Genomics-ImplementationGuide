@@ -53,15 +53,13 @@
   ],
   "text": "Variant not detected"
  },
- "method": [
-  {
-   "coding": [
-    {
-     "system": "http://snomed.info/sct",
-     "code": "117040002",
-     "display": "Nucleic acid sequencing"
-    }
-   ]
-  }
- ]
+ "method": {
+  "coding": [
+   {
+    "system": "http://snomed.info/sct",
+    "code": "117040002",
+    "display": "Nucleic acid sequencing"
+   }
+  ]
+ }
 }

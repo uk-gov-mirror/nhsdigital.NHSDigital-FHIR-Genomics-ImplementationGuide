@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Group-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Group-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Group_Genomics",
   "title": "NHSEngland Group Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -75,29 +75,6 @@
         "path": "Group.member",
         "definition": "SHALL be present. `entity` SHOULD be a reference to a Patient resource within the GOMS infrastructure or a unique identifier where this is not possible. `period` SHOULD record the date the member was added to the Group. `inactive` MAY be used to record entities which are no longer members of the group, though if an individual was added to a Group in error and should never have been part of the group, the entity SHALL be removed entirely.",
         "min": 1
-      },
-      {
-        "id": "Group.member.entity",
-        "path": "Group.member.entity",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-              "http://hl7.org/fhir/StructureDefinition/Device",
-              "http://hl7.org/fhir/StructureDefinition/Medication",
-              "http://hl7.org/fhir/StructureDefinition/Substance",
-              "http://hl7.org/fhir/StructureDefinition/Group"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
       }
     ]
   }

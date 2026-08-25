@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-RelatedPerson-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RelatedPerson-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_RelatedPerson_Genomics",
   "title": "NHSEngland RelatedPerson Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -45,9 +45,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics"
-            ],
             "aggregation": [
               "referenced",
               "bundled"

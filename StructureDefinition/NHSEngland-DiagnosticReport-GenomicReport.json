@@ -242,13 +242,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/Group",
-              "http://hl7.org/fhir/StructureDefinition/Device",
-              "http://hl7.org/fhir/StructureDefinition/Location"
-            ],
             "aggregation": [
               "referenced"
             ]
@@ -263,23 +256,7 @@
       {
         "id": "DiagnosticReport.performer",
         "path": "DiagnosticReport.performer",
-        "definition": "SHOULD reference the organization responsible for the testing, preferably by ODS code.",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-              "http://hl7.org/fhir/StructureDefinition/Organization",
-              "http://hl7.org/fhir/StructureDefinition/CareTeam"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
+        "definition": "SHOULD reference the organization responsible for the testing, preferably by ODS code."
       },
       {
         "id": "DiagnosticReport.performer.reference",
@@ -299,23 +276,7 @@
       {
         "id": "DiagnosticReport.resultsInterpreter",
         "path": "DiagnosticReport.resultsInterpreter",
-        "definition": "SHOULD reference the person responsible for interpreting the raw results, preferably by a recognised NHS identifier, such as SDS code.",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-              "http://hl7.org/fhir/StructureDefinition/Organization",
-              "http://hl7.org/fhir/StructureDefinition/CareTeam"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
+        "definition": "SHOULD reference the person responsible for interpreting the raw results, preferably by a recognised NHS identifier, such as SDS code."
       },
       {
         "id": "DiagnosticReport.specimen",
@@ -325,10 +286,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Specimen"
-            ],
             "aggregation": [
               "referenced"
             ]

@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Specimen-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Specimen_Genomics",
   "title": "NHSEngland Specimen Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -52,18 +52,6 @@
         },
         "definition": "Multiple identifiers MAY be assigned to a sample as it travels between labs. Each lab SHOULD append their local identifier to the identifier array if needed, ensuring either the system or assigner, is able to disambiguate any identifiers from possibly overlapping numbers from other organizations. Assigner is preferred in this case (see identifier example on the UKCore-Patient page for further guidance)\r\nNote: accessionIdentifier is unused by the Genomic Medicine Service to facilitate movement of samples across organizational boundaries.",
         "min": 1
-      },
-      {
-        "id": "Specimen.identifier.assigner",
-        "path": "Specimen.identifier.assigner",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
-            ]
-          }
-        ]
       },
       {
         "id": "Specimen.identifier:identifierGMSSpecimen",
