@@ -1,0 +1,49 @@
+implementationguides:
+      hl7-fhir-uv-extensions-r4:
+        name: hl7.fhir.uv.extensions.r4
+        version: 5.3.0-ballot-tc1
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
+      hl7-fhir-uv-xver-r5-r4:
+        name: hl7.fhir.uv.xver-r5.r4
+        version: 0.1.0
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
+      hl7-fhir-uv-ips:
+        name: hl7.fhir.uv.ips
+        version: 2.0.0
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
+      fhir-r4-nhsengland-pathology:
+        name: fhir.r4.nhsengland.pathology
+        version: 0.2.4-alpha
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
+      hl7-fhir-uv-tools-r4:
+        name: hl7.fhir.uv.tools.r4
+        version: 1.1.2
+        installMode: STORE_AND_INSTALL
+      fhir-r4-nhsengland-nhse-identifiers:
+        name: fhir.r4.nhsengland.nhse-identifiers
+        version: 0.1.1-alpha
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
+      hl7.fhir.us.core:
+        name: hl7.fhir.us.core
+        version: 6.1.0
+        installMode: STORE_AND_INSTALL
+      hl7.fhir.us.mcode:
+        name: hl7.fhir.us.mcode
+        version: 4.0.0
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
+      fhir.r4.nhsengland.pars:
+        name: fhir.r4.nhsengland.pars
+        version: 0.1.2-alpha
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
+      hl7.fhir.uv.security-label-ds4p:
+        name: hl7.fhir.uv.security-label-ds4p
+        version: 1.0.0
+        installMode: STORE_AND_INSTALL
+        fetchDependencies: false
