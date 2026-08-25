@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-DiagnosticReport-GenomicReport",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_DiagnosticReport_GenomicReport",
   "title": "NHSEngland DiagnosticReport GenomicReport",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -294,7 +294,7 @@
       {
         "id": "DiagnosticReport.performer.identifier.system",
         "path": "DiagnosticReport.performer.identifier.system",
-        "fixedUri": "https://fhir.nhs.uk/Id/ods-organisation-code"
+        "fixedUri": "https://fhir.nhs.uk/Id/ods-organization-code"
       },
       {
         "id": "DiagnosticReport.resultsInterpreter",

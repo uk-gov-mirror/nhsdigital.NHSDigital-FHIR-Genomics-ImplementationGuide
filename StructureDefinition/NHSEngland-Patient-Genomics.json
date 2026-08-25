@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Patient-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Patient_Genomics",
   "title": "NHSEngland Patient Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -77,7 +77,15 @@
         "id": "Patient.extension:fetalStatus",
         "path": "Patient.extension",
         "sliceName": "fetalStatus",
-        "definition": "Extension used for determining the life status of the fetus. SHOULD always be present for a fetal patient record to help with identification."
+        "definition": "Extension used for determining the life status of the fetus. SHOULD always be present for a fetal patient record to help with identification.",
+        "constraint": [
+          {
+            "key": "gen-3",
+            "severity": "warning",
+            "human": "fetalStatus SHOULD be provided if a birthDate is not present, indicating the patient resource is likely for a fetus.",
+            "expression": "(Patient.extension(fetalStatus).exists() and Patient.birthDate.notExists()) or Patient.birthDate.exists()"
+          }
+        ]
       },
       {
         "id": "Patient.extension:residentialStatus",
@@ -107,6 +115,15 @@
       {
         "id": "Patient.identifier",
         "path": "Patient.identifier",
+        "slicing": {
+          "discriminator": [
+            {
+              "type": "pattern",
+              "path": "$this"
+            }
+          ],
+          "rules": "open"
+        },
         "definition": "SHALL be present for Patients within the Genomic Order Management ecosystem. It is preferred that all patients with an NHS number have this included within the Patient resource upon submission of a test order. Patient who do not have an NHS number SHOULD have a temporary one registered/assigned with PDS.\r\nFor patient records where the NHS number has been traced from PDS, the trace status SHOULD be provided within the NHS Number identifier slice.\r\n\r\nAdditional identifiers SHOULD include an appropriate naming system scheme which clearly identifies the assigner (to disambiguate the identifier from other resources where these are not nationally unique). Alternatively, the OID for local identifier MAY be used, with the 'assigner' organization explicitly referenced.",
         "min": 1
       },
@@ -118,19 +135,20 @@
       {
         "id": "Patient.identifier:nhsNumber.assigner",
         "path": "Patient.identifier.assigner",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
-            ]
-          }
-        ]
+        "max": "0"
       },
       {
         "id": "Patient.identifier:localIdentifier",
         "path": "Patient.identifier",
-        "sliceName": "localIdentifier"
+        "sliceName": "localIdentifier",
+        "constraint": [
+          {
+            "key": "gen-4",
+            "severity": "error",
+            "human": "localIdentifier MUST be provided when no NHS number is present",
+            "expression": "(Patient.identifier(localIdentifier).exists() and Patient.identifier(nhsNumber).notExists()) or Patient.identifier(nhsNumber).exists() or Patient.identifier(localIdentifier).exists()"
+          }
+        ]
       },
       {
         "id": "Patient.identifier:localIdentifier.assigner",
