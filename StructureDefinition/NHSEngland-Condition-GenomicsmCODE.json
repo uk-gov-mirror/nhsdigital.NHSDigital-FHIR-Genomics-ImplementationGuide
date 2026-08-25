@@ -147,46 +147,6 @@
         "definition": "SHALL be present. Reference to the associated Patient. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS"
       },
       {
-        "id": "Condition.recorder",
-        "path": "Condition.recorder",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/RelatedPerson"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "Condition.asserter",
-        "path": "Condition.asserter",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/RelatedPerson"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
-      },
-      {
         "id": "Condition.note",
         "path": "Condition.note",
         "definition": "For recording additional information regarding the condition where this does not fit into the structured fields or cannot be structured due to the way this information has been recorded in source systems."

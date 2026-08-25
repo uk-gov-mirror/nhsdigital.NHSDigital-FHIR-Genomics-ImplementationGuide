@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-FamilyMemberHistory-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-FamilyMemberHistory-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_FamilyMemberHistory_Genomics",
   "title": "NHSEngland FamilyMemberHistory Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -64,10 +64,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Patient"
-            ],
             "aggregation": [
               "referenced",
               "bundled"

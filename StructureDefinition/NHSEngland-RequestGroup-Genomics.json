@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-RequestGroup-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-RequestGroup-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_RequestGroup_Genomics",
   "title": "NHSEngland RequestGroup Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -56,17 +56,7 @@
         "id": "RequestGroup.subject",
         "path": "RequestGroup.subject",
         "definition": "Automatically assigned by the central service. SHALL match the subject referenced from the Proband request.",
-        "min": 1,
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/Group"
-            ]
-          }
-        ]
+        "min": 1
       },
       {
         "id": "RequestGroup.encounter",

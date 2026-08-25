@@ -115,17 +115,16 @@
       {
         "id": "Patient.identifier",
         "path": "Patient.identifier",
-        "slicing": {
-          "discriminator": [
-            {
-              "type": "pattern",
-              "path": "$this"
-            }
-          ],
-          "rules": "open"
-        },
         "definition": "SHALL be present for Patients within the Genomic Order Management ecosystem. It is preferred that all patients with an NHS number have this included within the Patient resource upon submission of a test order. Patient who do not have an NHS number SHOULD have a temporary one registered/assigned with PDS.\r\nFor patient records where the NHS number has been traced from PDS, the trace status SHOULD be provided within the NHS Number identifier slice.\r\n\r\nAdditional identifiers SHOULD include an appropriate naming system scheme which clearly identifies the assigner (to disambiguate the identifier from other resources where these are not nationally unique). Alternatively, the OID for local identifier MAY be used, with the 'assigner' organization explicitly referenced.",
-        "min": 1
+        "min": 1,
+        "constraint": [
+          {
+            "key": "gen-4",
+            "severity": "error",
+            "human": "Identifiers which are not NHS Numbers SHALL have an assigner",
+            "expression": "identifier.where(system != 'https://fhir.nhs.uk/Id/nhs-number').all(assigner.exists())"
+          }
+        ]
       },
       {
         "id": "Patient.identifier:nhsNumber",
@@ -136,32 +135,6 @@
         "id": "Patient.identifier:nhsNumber.assigner",
         "path": "Patient.identifier.assigner",
         "max": "0"
-      },
-      {
-        "id": "Patient.identifier:localIdentifier",
-        "path": "Patient.identifier",
-        "sliceName": "localIdentifier",
-        "constraint": [
-          {
-            "key": "gen-4",
-            "severity": "error",
-            "human": "localIdentifier MUST be provided when no NHS number is present",
-            "expression": "(Patient.identifier(localIdentifier).exists() and Patient.identifier(nhsNumber).notExists()) or Patient.identifier(nhsNumber).exists() or Patient.identifier(localIdentifier).exists()"
-          }
-        ]
-      },
-      {
-        "id": "Patient.identifier:localIdentifier.assigner",
-        "path": "Patient.identifier.assigner",
-        "min": 1
-      },
-      {
-        "id": "Patient.identifier:localIdentifier.assigner.identifier",
-        "path": "Patient.identifier.assigner.identifier",
-        "min": 1,
-        "fixedIdentifier": {
-          "system": "https://fhir.nhs.uk/Id/ods-organization-code"
-        }
       },
       {
         "id": "Patient.name",

@@ -39,21 +39,6 @@
         "max": "0"
       },
       {
-        "id": "Task.basedOn.identifier.assigner",
-        "path": "Task.basedOn.identifier.assigner",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Organization-Genomics"
-            ],
-            "aggregation": [
-              "referenced"
-            ]
-          }
-        ]
-      },
-      {
         "id": "Task.partOf",
         "path": "Task.partOf",
         "type": [
@@ -149,10 +134,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Patient-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Resource"
-            ],
             "aggregation": [
               "referenced"
             ]
@@ -209,9 +190,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Organization"
-            ],
             "aggregation": [
               "referenced"
             ]
