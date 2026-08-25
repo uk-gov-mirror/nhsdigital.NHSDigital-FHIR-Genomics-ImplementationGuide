@@ -191,9 +191,6 @@
       {
         "id": "DiagnosticReport.category",
         "path": "DiagnosticReport.category",
-        "slicing": {
-          "rules": "open"
-        },
         "definition": "Potentially multiple categories to specify the specialty the report is relevant for. Different codings are expected by the Genomic Report and EU Lab profiles."
       },
       {

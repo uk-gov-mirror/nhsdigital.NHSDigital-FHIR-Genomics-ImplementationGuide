@@ -111,9 +111,7 @@
           {
             "code": "Reference",
             "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Specimen-Genomics",
               "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
               "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report"
             ],
             "aggregation": [
