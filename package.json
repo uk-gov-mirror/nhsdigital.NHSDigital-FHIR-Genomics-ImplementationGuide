@@ -9,6 +9,7 @@
     "hl7.fhir.eu.laboratory": "2.0.0",
     "ihe.iti.pcf": "1.1.0",
     "hl7.fhir.uv.tools.r4": "1.1.2",
+    "hl7.fhir.uv.security-label-ds4p": "1.0.0",
     "fhir.r4.ukcore.stu3.currentbuild": "0.29.0-pre-release"
   },
   "fhirVersions": [
