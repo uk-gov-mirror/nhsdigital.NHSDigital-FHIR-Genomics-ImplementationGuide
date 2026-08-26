@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Condition-GenomicsmCODE",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Condition-GenomicsmCODE",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Condition_GenomicsmCODE",
   "title": "NHSEngland Condition GenomicsmCODE",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -79,7 +79,7 @@
         "path": "Condition.category",
         "sliceName": "ukcoreCategory",
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "valueSet": "https://fhir.hl7.org.uk/ValueSet/UKCore-ConditionCategory"
         }
       },
@@ -94,8 +94,8 @@
         "slicing": {
           "discriminator": [
             {
-              "type": "pattern",
-              "path": "$this"
+              "type": "value",
+              "path": "system"
             }
           ],
           "rules": "open"
@@ -145,46 +145,6 @@
         "id": "Condition.subject",
         "path": "Condition.subject",
         "definition": "SHALL be present. Reference to the associated Patient. This MAY be through a resource reference if the ID on the central service is known (or provided within the transaction bundle) or through NHS number where this is known and has been traced through PDS"
-      },
-      {
-        "id": "Condition.recorder",
-        "path": "Condition.recorder",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/RelatedPerson"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "Condition.asserter",
-        "path": "Condition.asserter",
-        "type": [
-          {
-            "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-PractitionerRole-Genomics",
-              "http://hl7.org/fhir/StructureDefinition/Practitioner",
-              "http://hl7.org/fhir/StructureDefinition/PractitionerRole",
-              "http://hl7.org/fhir/StructureDefinition/Patient",
-              "http://hl7.org/fhir/StructureDefinition/RelatedPerson"
-            ],
-            "aggregation": [
-              "referenced",
-              "bundled"
-            ]
-          }
-        ]
       },
       {
         "id": "Condition.note",

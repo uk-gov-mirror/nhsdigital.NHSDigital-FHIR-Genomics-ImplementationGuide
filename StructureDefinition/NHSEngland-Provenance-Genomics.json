@@ -2,11 +2,11 @@
   "resourceType": "StructureDefinition",
   "id": "NHSEngland-Provenance-Genomics",
   "url": "https://fhir.nhs.uk/StructureDefinition/NHSEngland-Provenance-Genomics",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "name": "NHSEngland_Provenance_Genomics",
   "title": "NHSEngland Provenance Genomics",
   "status": "active",
-  "date": "2026-04-16",
+  "date": "2026-08-25",
   "publisher": "NHS England",
   "contact": [
     {
@@ -39,11 +39,6 @@
         "type": [
           {
             "code": "Reference",
-            "targetProfile": [
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-ServiceRequest-Genomics",
-              "https://fhir.nhs.uk/StructureDefinition/NHSEngland-DiagnosticReport-GenomicReport",
-              "http://hl7.org/fhir/StructureDefinition/Resource"
-            ],
             "aggregation": [
               "referenced",
               "bundled"

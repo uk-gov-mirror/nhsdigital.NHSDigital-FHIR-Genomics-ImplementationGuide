@@ -3,7 +3,7 @@
   "id": "SearchParameter-plandefinition-actor-role",
   "url": "https://fhir.nhs.uk/SearchParameter/plandefinition-actor-role",
   "version": "0.1.0",
-  "name": "PlanDefinition Actor Role",
+  "name": "PlanDefinition_Actor_Role",
   "status": "draft",
   "experimental": false,
   "date": "2026-05-19",
