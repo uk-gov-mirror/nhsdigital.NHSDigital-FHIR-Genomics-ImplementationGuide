@@ -33,6 +33,23 @@
   "differential": {
     "element": [
       {
+        "id": "BodyStructure.identifier:bodyStructureIdentifier",
+        "path": "BodyStructure.identifier",
+        "sliceName": "bodyStructureIdentifier"
+      },
+      {
+        "id": "BodyStructure.identifier:bodyStructureIdentifier.type",
+        "path": "BodyStructure.identifier.type",
+        "fixedCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/resource-types",
+              "code": "BodyStructure"
+            }
+          ]
+        }
+      },
+      {
         "id": "BodyStructure.morphology",
         "path": "BodyStructure.morphology",
         "definition": "SHALL be provided where relevant. SHOULD use SNOMED CT encoding. SHOULD use a code under the `14799000 | Neoplasm, metastatic (morphologic abnormality)` concept if the sample has been collected from a metastatic site, as opposed to primary."
