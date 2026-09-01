@@ -1,6 +1,18 @@
 {
   "resourceType": "BodyStructure",
   "id": "BodyStructure-BodySiteLocationLungs-Example",
+  "identifier": [
+    "system": "https://fhir.nhs.uk/Id/local-BodyStructure-identifier",
+    "value": "BodyStructure-BodySiteLocationLungs-Example",
+    "type": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/resource-types",
+          "code": "BodyStructure"
+        }
+      ]
+    }
+  ],
   "morphology": {
     "coding": [
       {

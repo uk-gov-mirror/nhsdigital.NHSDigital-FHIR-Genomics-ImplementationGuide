@@ -27,7 +27,7 @@
    {
     "url": "http://hl7.org/fhir/StructureDefinition/bodySite",
     "valueReference": {
-     "reference": "BodyStructure/dyStructure/UKCore-BodyStructure-MedianCubitalVeinExample"
+     "reference": "BodyStructure/UKCore-BodyStructure-MedianCubitalVeinExample"
     }
    }
   ],

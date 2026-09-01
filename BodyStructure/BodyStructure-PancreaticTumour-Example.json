@@ -1,6 +1,18 @@
 {
 	"resourceType": "BodyStructure",
 	"id": "BodyStructure-PancreaticTumour-Example",
+	"identifier": [
+    "system": "https://fhir.nhs.uk/Id/local-BodyStructure-identifier",
+    "value": "BodyStructure-PancreaticTumour-Example",
+    "type": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/resource-types",
+          "code": "BodyStructure"
+        }
+      ]
+    }
+  ],
 	"morphology": {
 		"coding": [
 			{
